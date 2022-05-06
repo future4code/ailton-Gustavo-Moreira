@@ -1,0 +1,2 @@
+# Aprendizados da semana
+Minha primeira semana, aprendi contudas moraes e de ética para com meus colegas, rotinas e regras da Labenu, conheci muita gente nova. De conteúdo, aprendi a dar comandos no terminal git bash, fizemos uma atividade de achar um assassino dentro do terminal. Aprendi a usar os comandos do git para criar branch e realizar as PR. Agora estou aprendendo a usar o VSCode. **Semana TOP!**
