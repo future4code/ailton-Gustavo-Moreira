@@ -27,7 +27,7 @@
 
 // Exercício 2
 
-const array = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
+// const array = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
 //A 
 
 // for (let numero of array) {
@@ -77,13 +77,45 @@ const array = [80, 30, 130, 40, 60, 21, 70, 120, 90, 103, 110, 55]
 // Desafios
 // Desafio 1
 
-let numeroEscolhido = +prompt ("Escolha um número")
+// let numeroEscolhido = +prompt ("Escolha um número")
+// alert ("Vamos brincar :)")
+// let numeroChutado = +prompt ("Chute um numero")
+// let tentativas = 1
+
+// while (numeroChutado != numeroEscolhido) {
+//     if (numeroChutado < numeroEscolhido){
+//         alert ("O numero chutado foi " +numeroChutado)
+//         console.log ("O numero chutado foi " +numeroChutado)
+//         alert ("Errou. O número escolhido é maior")
+//         console.log ("Errou. O número escolhido é maior")
+//         tentativas++
+//         numeroChutado = +prompt ("Chute um numero")
+//     } else {
+//         alert ("O numero chutado foi " +numeroChutado)
+//         console.log ("O numero chutado foi " +numeroChutado)
+//         alert ("Errou. O número escolhido é menor")
+//         console.log ("Errou. O número escolhido é menor")
+//         tentativas++
+//         numeroChutado = +prompt ("Chute um numero")
+//     }
+// }
+// alert ("Acertou Mizeravi!")
+// console.log ("Acertou Mizeravi!")
+// console.log ("O número de tentativas foi: " + tentativas)
+
+// Desafio 2
+
+
+let random = +Math.floor(Math.random() * 100 + 1)
+
+console.log (random)
+
 alert ("Vamos brincar :)")
 let numeroChutado = +prompt ("Chute um numero")
 let tentativas = 1
 
-while (numeroChutado != numeroEscolhido) {
-    if (numeroChutado < numeroEscolhido){
+while (numeroChutado != random) {
+    if (numeroChutado < random){
         alert ("O numero chutado foi " +numeroChutado)
         console.log ("O numero chutado foi " +numeroChutado)
         alert ("Errou. O número escolhido é maior")
@@ -99,6 +131,8 @@ while (numeroChutado != numeroEscolhido) {
         numeroChutado = +prompt ("Chute um numero")
     }
 }
+
+
 alert ("Acertou Mizeravi!")
 console.log ("Acertou Mizeravi!")
 console.log ("O número de tentativas foi: " + tentativas)
