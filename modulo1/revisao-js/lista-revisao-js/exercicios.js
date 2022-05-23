@@ -138,18 +138,43 @@ function retornaPessoaAnonimizada(pessoa) {
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
-   
+   let autorizadas = []
+    for (let i = 0; i < pessoas.length; i++){
+       if (pessoas[i].altura >= 1.5 && pessoas[i].idade > 14 && pessoas[i].idade < 60){
+        autorizadas.push(pessoas[i])
+       }
+   }
+   return autorizadas
 }
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-  
+    let negadas = []
+    for (let i = 0; i < pessoas.length; i++){
+       if (pessoas[i].altura >= 1.5 && pessoas[i].idade > 14 && pessoas[i].idade < 60){
+       } else {
+        negadas.push(pessoas[i])
+       }
+   }
+   return negadas
 }
 
 // EXERCÍCIO 14
 function retornaContasComSaldoAtualizado(contas) {
-
+    function somarCompras (){
+    let soma = 0;
+    for (let i = 0; i < contas.compras.length; i++) {
+        soma += contas.compras[i];
+    }
+    }
+    let unificarCompras = contas.map((lista)=>{
+        return{
+            ...lista,
+            compras: funcao,
+        }
+    })
 }
+
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
