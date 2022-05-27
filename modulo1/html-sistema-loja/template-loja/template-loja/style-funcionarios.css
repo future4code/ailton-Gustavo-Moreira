@@ -1,0 +1,16 @@
+footer{
+    margin: 100px 0 0 0;
+}
+th{
+    background-color: aquamarine;
+    border: 2px solid black;
+}
+td{
+    background-color: coral;
+}
+nav{
+    display: inline-block;
+}
+header{
+    background-color: goldenrod;
+}
