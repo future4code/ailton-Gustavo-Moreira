@@ -21,27 +21,30 @@ input {
     width: 500px;
 }
 
-button:focus {
+button:active {
     color: white;
 }
 
+button:hover{
+    background-color: #995906;
+}
+
 img {
-    width: 100px;
+    width: 30px;
 }
 
 div>p:first-child {
     display: inline;
 }
 
-div img {
-    background: black;
-}
+
 
 .botao-amarelo {
     background-color: #ffaf43;
     width: 250px;
     height: 40px;
     border-radius: 5px;
+    border-color: #ffaf43; 
     font-size: 20px;
     color: white;
 }
@@ -60,6 +63,10 @@ div img {
     height: 15px;
 }
 
+#teste{
+    background-color: white;
+}
+
 
 /** 
   *
@@ -74,6 +81,10 @@ div img {
 
 #container-de-descricao>ol {
     padding: 15px 0px;
+    position: relative;
+    margin-top: 12%;
+    display: inline-block;
+    width: 18%;
 }
 
 #container-para-comprar {
@@ -90,8 +101,12 @@ div img {
     display: block;
 }
 
-#home-pt1 {
-    border: 2px solid black;
+
+
+.prabaixo{
+    position: absolute;
+    bottom: 70%;
+    left: 43%;
 }
 
 /**
@@ -107,6 +122,11 @@ div:last-child {
 
 table {
     width: 60%;
+    margin: 0 auto;
+}
+
+tr td {
+    text-align: center;
 }
 
 td button {
@@ -115,7 +135,9 @@ td button {
     height: 30px;
     border-radius: 5px;
     color: black;
+    border-color: #fadf63;
 }
+
 
 .container-do-search {
     margin-top: 20px;
@@ -136,3 +158,4 @@ td button {
 #back-button:hover {
     background-color: #635a3d
 }
+
