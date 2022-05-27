@@ -123,22 +123,30 @@
 
 //Desafio 2
 
-let catetoMaior = Number (prompt("Cateto Maior"))
-let catetoMenor = Number (prompt("Cateto Menor"))
+// let catetoMaior = Number (prompt("Cateto Maior"))
+// let catetoMenor = Number (prompt("Cateto Menor"))
 
-function cateto1 (num1){
-     num1 = num1 * num1
-    return num1
+// function cateto1 (num1){
+//      num1 = num1 * num1
+//     return num1
+// }
+// let catetoA = cateto1(catetoMaior)
+
+// function cateto2 (num2){
+//      num2 = num2 * num2
+//     return num2
+// }
+// let catetoB = cateto2(catetoMenor)
+
+// let hip = Math.sqrt(catetoA + catetoB)
+
+// console.log (hip)
+
+let n = 8
+
+function verifica (num1){
+    let total = num1 % 1 === 0 && num1 % num1 === 0 ? 'Primo' : 'Não é primo';
+    return total
 }
-let catetoA = cateto1(catetoMaior)
-
-function cateto2 (num2){
-     num2 = num2 * num2
-    return num2
-}
-let catetoB = cateto2(catetoMenor)
-
-let hip = Math.sqrt(catetoA + catetoB)
-
-console.log (hip)
-
+let resultado = verifica (n)
+console.log (resultado)
