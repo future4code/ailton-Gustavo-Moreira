@@ -53,6 +53,7 @@ div img {
 .container {
     height: 500px;
     text-align: center;
+    position: relative;
 }
 
 .icone {
@@ -89,6 +90,9 @@ div img {
     display: block;
 }
 
+#home-pt1 {
+    border: 2px solid black;
+}
 
 /**
   *
