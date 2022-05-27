@@ -1,0 +1,13 @@
+footer{
+    margin: 100px 0 0 0;
+}
+header{
+    background-color: goldenrod;
+}
+th{
+    border: 1px solid black;
+    background-color: gray;
+}
+td{
+    border: 1px solid black;
+}
