@@ -1,0 +1,170 @@
+/*GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.espacamento{
+    margin-left: 20px;
+}
+
+/* Index */
+
+/* Cabeçalho */
+
+
+
+.cabeçalho {
+    background-color: burlywood;
+    padding: 10px 5px 10px 5px;
+    color: black;
+    text-align: left;
+    border: 2px solid black;
+}
+
+/* Parte de cima */
+
+.container-apresentacao {
+    background-color: #2274a5;
+    color: white;
+    height: 300px;
+    background-image: url(img/perfil.jpeg);
+    background-repeat: no-repeat;
+    background-position: 60vw;
+    background-size: 30vh 15vw;
+    border: 2px solid black;
+
+}
+
+h1{
+    font-size: 50px;
+    letter-spacing: 4px;
+    padding-top: 70px;
+    margin-left: 50px;
+}
+
+h3{
+    font-size: 30px;
+    letter-spacing: 4px;
+    margin-left: 70px;
+}
+
+/* Parte de baixo 
+ */
+.container-descricao {
+    background-color: burlywood;
+    height: 500px;
+    border: 2px solid black;
+    background-image: url(img/fullstack.jpeg);
+    background-repeat: no-repeat;
+    background-position: 50vw;
+    background-size: 80vh 35vw;
+}
+
+p {
+    font-size: 20px;
+    padding-top: 50px;
+    margin-left: 50px;
+    width: 50%;
+}
+
+li {
+    margin-left: 20px;
+}
+
+ul{
+    border: 1px solid white;
+    width: 30%;
+    margin-left: 30px;
+}
+
+.link{
+    text-decoration: none;
+    color: black;
+}
+
+/* Rodapé */
+
+
+.rodape {
+    background-color: blue;
+    padding: 10px 5px 10px 5px;
+    color: white;
+    text-align: left;
+    border: 2px solid black;
+    height: 60px;
+}
+
+
+.rodape a{
+    border: 2px solid black;
+    color: white;
+    margin-left: 50px;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-decoration: none;
+}
+
+.rodape h4{
+    margin-left: 55%;
+    display: inline;
+}
+
+.rodape h5{
+    margin-left: 70%;
+}
+
+/* Sobre Mim */
+
+.container-Perfil{
+    background-color: darkgrey;
+    height: 500px;
+    border: 2px solid black;
+    background-image: url(img/caricatura.png);
+    background-repeat: no-repeat;
+    background-position: 70vw;
+    background-size: 40vh 20vw;
+}
+
+.container-Perfil h4{
+    font-size: 40px;
+    letter-spacing: 4px;
+    padding-top: 20px;
+    margin-left: 40px;
+}
+
+.container-Perfil h5{
+    padding-top: 20px;
+    margin-left: 20px;
+    font-size: 25px;
+}
+
+.container-Perfil h6{
+    margin-left: 20px;
+    font-size: 15px;
+    width: 50%;
+}
+
+/* Projetos */
+
+.container-Projetos{
+    background-color: darkgrey;
+    height: 500px;
+    border: 2px solid black;
+
+}
+
+.container-Projetos h5{
+    font-size: 20px;
+    padding-top: 20px;
+    margin-left: 40px;
+    width: 50%;
+}
+
+.container-Projetos h4{
+    padding-top: 10px;
+    margin-left: 20px;
+    font-size: 25px;
+    margin-top: 20px;
+}
