@@ -146,23 +146,78 @@ ul{
     width: 50%;
 }
 
-/* Projetos */
+/* VSCode */
 
-.container-Projetos{
+.container-vscode{
     background-color: darkgrey;
     height: 500px;
     border: 2px solid black;
-
+    background-image: url(img/vscode.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100vh 30vw;
 }
 
-.container-Projetos h5{
+.container-vscode h5{
     font-size: 20px;
     padding-top: 20px;
     margin-left: 40px;
     width: 50%;
 }
 
-.container-Projetos h4{
+.container-vscode h4{
+    padding-top: 10px;
+    margin-left: 20px;
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+/* JavaScrip */
+
+.container-javascript{
+    background-color: darkgrey;
+    height: 500px;
+    border: 2px solid black;
+    background-image: url(img/javascript.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100vh 30vw;
+}
+
+.container-javascript h5{
+    font-size: 20px;
+    padding-top: 20px;
+    margin-left: 40px;
+    width: 50%;
+}
+
+.container-javascript h4{
+    padding-top: 10px;
+    margin-left: 20px;
+    font-size: 25px;
+    margin-top: 20px;
+}
+
+/* BlackJack */
+
+.container-blackjack{
+    background-color: darkgrey;
+    height: 500px;
+    border: 2px solid black;
+    background-image: url(img/blackjack.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100vh 30vw;
+}
+
+.container-blackjack h5{
+    font-size: 20px;
+    padding-top: 20px;
+    margin-left: 40px;
+    width: 50%;
+}
+
+.container-blackjack h4{
     padding-top: 10px;
     margin-left: 20px;
     font-size: 25px;
