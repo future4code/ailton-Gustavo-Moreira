@@ -63,6 +63,39 @@ main{
     margin: 1% 0;
 }
 
+/* mobile  */
+
+@media screen and (min-width: 100px) and (max-width: 600px) {
+   
+    .countainer{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-auto-flow: column;
+        justify-items: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+    }   
+    .card{
+        display: grid;
+        border: 1px solid black;
+        width: 20vw;
+        grid-template-columns: 1fr;
+    }
+    
+    .card a video {
+        width: 100%;
+    }
+    
+    .card > p{
+        padding-top: 10%;
+        padding-bottom: 10%;
+    }
+    
+    
+  }
+
 /* Rodapé  */
 
 footer{
