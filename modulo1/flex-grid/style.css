@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+/* Header */
+
+header{
+    background-color: mediumvioletred;
+    border: 1px solid black;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+}
+
+header span{
+    font-size: large;
+}
+
+header img {
+    height: 3vh;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    padding-bottom: 3px;
+}
+
+header button{
+margin-left: auto;
+margin-right: 2vw;
+}
+
+
+/* Main */
+
+main{
+    display: flex;
+    border: 1px solid black;
+    flex-grow: 1;
+}
+
+main section{
+    display: flex;
+}
+
+main section span{
+    margin-top: 1.6vh;
+}
+
+.section1{
+    width: 20%;
+    background-color: #f2d0e0;
+    display: flex;
+    flex-direction: column;
+}
+
+.section2{
+    width: 80%;
+    display: flex;
+    margin: 1%;
+    flex-wrap: wrap;
+}
+
+.img-casinha {
+    height: 2vh;
+    width: 2vw;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    margin-top: 2vh;
+    display: flex;
+}
+
+.img-bala {
+    height: 2vh;
+    width: 2vw;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    margin-top: 2vh;
+    display: flex;
+}
+
+.img-carrinho {
+    height: 2vh;
+    width: 2vw;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    margin-top: 2vh;
+    display: flex;
+}
+
+.img-perfil {
+    height: 2vh;
+    width: 2vw;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    margin-top: 2vh;
+    display: flex;
+}
+
+.img-seta {
+    height: 2vh;
+    width: 2vw;
+    margin-right: 1vw;
+    margin-left: auto;
+    margin-top: 2vh;
+    display: flex;
+}
+
+
+.card {
+    box-shadow: 5px 5px darkgray;
+    width: 210px;
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}
+
+/* footer */
+
+footer{
+    background-color: mediumvioletred;
+    border: 1px solid black;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    justify-content: center;
+}
+
