@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.input1{
+    width: 30%;
+}
+
+.input2{
+    width: 60%;
+}
+
+.botao {
+    width: 10%;
+}
