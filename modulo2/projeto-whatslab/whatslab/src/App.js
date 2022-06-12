@@ -1,32 +1,51 @@
-import './App.css';
 import React from "react";
 import styled from "styled-components";
+import Post from './Post/Post';
 
 const arrayPosts = [
   {
-    nomeUsuario: "x",
-    mensagemUsuario: "x",
+    nomeUsuario: "",
+    mensagemUsuario: ""
   },
+  
 ];
 
 const AppContainer = styled.div`
-    height: 38rem;
-    width: 45%;
-    border: 1px solid black;
-    margin-left: 25rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  height: 38rem;
+  width: 20rem;
+  margin-left: 35%;
 `;
+
+const HeadContainer = styled.head`
+  display: flex;
+  border: 1px solid black;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  background-color: bisque;
+`
 
 const MainContainer = styled.main`
-    display: flex;
-    height: 95%;
-    width: 100%;
-    border: 1px solid black;
+display: flex;
+  border: 1px solid black;
+  height: 34rem;
+  background-color: blue;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+`
+
+const FooterContainer = styled.div`
+  display: flex;
+  border: 1px solid black;
+  height: 2rem;
 `;
 
-const FooterContainer = styled.footer`
-  display: flex;
-  justify-content: center;
-  margin-top: 5px;
+const Input1 = styled.input`
+width: 5rem;
 `
 
 class App extends React.Component {
@@ -37,36 +56,65 @@ class App extends React.Component {
   };
 
   changeUserName = (event) => {
-    this.setState({ userName: event.target.value });
+    this.setState({ userName: event.target.value});
   };
 
   changeUserMsg = (event) => {
     this.setState({ userMsg: event.target.value });
   };
 
+  addNewPost = () => {
+    const newPost = {
+      nomeUsuario: this.state.userName,
+      mensagemUsuario: this.state.userMsg,
+    };
+
+    this.setState({
+      posts: [...this.state.posts, newPost],
+      userName: "",
+      userMsg: "",
+    });
+  };
+
   render() {
+    const componentesPost = this.state.posts.map((p) => {
+      return (
+        <Post
+          nomeUsuario={p.nomeUsuario}
+          mensagemUsuario={p.mensagemUsuario}
+        />
+      );
+    });
+
     return (
-      <AppContainer> 
-      <MainContainer>
-        Teste
-      </MainContainer>
-      <FooterContainer>
-      <input 
-        placeholder="Usuário"
-        value={this.state.userName}
-        onChange={this.changeUserName}
-      />
-      <input 
-        placeholder="Mensagem"
-        value={this.state.userMsg}
-        onChange={this.changeUserMsg}
-      />
-        <button class="botao">Enviar</button>
-      </FooterContainer>
-      
-    </AppContainer>
-  );
-}
+      <AppContainer>
+        <HeadContainer>
+          <p>MENSAGER</p> 
+        </HeadContainer>
+        
+        <MainContainer>
+          {componentesPost}
+        </MainContainer>
+                
+        <FooterContainer>
+          <Input1
+            placeholder={"Usuário"}
+            value={this.state.userName}
+            onChange={this.changeUserName}
+          />
+          <input
+            placeholder={"Mensagem do Usuario"}
+            value={this.state.userMsg}
+            onChange={this.changeUserMsg}
+          />
+
+          <button onClick={this.addNewPost}>Enviar</button>
+        </FooterContainer>
+      </AppContainer>
+    );
+    
+  }
 }
 
 export default App;
+
