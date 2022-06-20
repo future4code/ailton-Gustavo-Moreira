@@ -108,20 +108,12 @@ function trocaPrimeiroEUltimo(array) {
 
 // EXERCÍCIO 12
 function checaIgualdadeDesconsiderandoCase(string1, string2) {
-  if string1.equalsIgnoreCase(string2);
+  return string1.toLowerCase() === string2.toLowerCase;
 
-  
-  
-console.log (checaIgualdadeDesconsiderandoCase())
 }
 
 // EXERCÍCIO 13
 function checaRenovacaoRG() {
-  const anoAtual = Number (prompt ("Qual é o ano atual?"))
-  const anoNascimento = Number (prompt ("Qual é o seu ano de nascimento?"))
-  const carteira = Number (prompt ("Qual é o ano em que sua carteira de identidade foi emitida?"))
-  let idade = anoAtual - anoNascimento;
-  let idade20 = 
   
 
 }
