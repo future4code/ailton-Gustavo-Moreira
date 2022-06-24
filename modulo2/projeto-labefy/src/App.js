@@ -8,17 +8,30 @@ export default class App extends Component {
     currentPage: "Criacao"
   }
 
-  changePage = () =>{
+  renderPage = () =>{
     switch (this.state.currentPage){
-      case "Criacao": this.setState ({currentPage: CriacaoPlaylist})
-
+      case "Criacao": 
+        return <CriacaoPlaylist />;
+      case "Detalhe":
+        return <DetalhesPlaylist />;
+      case "Visualiza":
+        return <VisualizaPlaylist />;
+      default:
+        return <CriacaoPlaylist />;
     }
+  }
+
+  changePage = (namePage) => {
+    this.setState({currentPage: namePage})
   }
 
   render() {
     return (
       <div>
-        <button></button>
+        <button onClick={() => this.changePage("Criacao")}>Criar Playlist</button>
+        <button onClick={() => this.changePage("Visualiza")}>Visualizar Playlist</button>
+        <button onClick={() => this.changePage("Detalhe")}>Detalhes</button>
+        {this.renderPage()}
       </div>
     )
   }
