@@ -29,8 +29,7 @@ export default class App extends Component {
     return (
       <div>
         <button onClick={() => this.changePage("Criacao")}>Criar Playlist</button>
-        <button onClick={() => this.changePage("Visualiza")}>Visualizar Playlist</button>
-        <button onClick={() => this.changePage("Detalhe")}>Detalhes</button>
+        <button onClick={() => this.changePage("Visualiza")}>Visualizar Playlist</button> 
         {this.renderPage()}
       </div>
     )
