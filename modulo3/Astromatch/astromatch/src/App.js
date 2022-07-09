@@ -1,12 +1,9 @@
 
 import './App.css';
 import React from 'react';
-import axios from 'axios';
-import styled  from 'styled-components';
 import { useState , useEffect } from 'react'
 import TelaInicial from './pages/TelaInicial'
 import TelaMatches from './pages/TelaMatches'
-import TelaLista from './pages/TelaLista'
 
 function App() {
 
@@ -22,21 +19,16 @@ function App() {
     settelaAtual("matches")
   }
 
-  const goToLista = () => {
-    settelaAtual("lista")
-  }
 
   // Switch para a escolha das telas.
   const selectPage = () => {
     switch (telaAtual){
       case "inicial":
-        return <TelaInicial goToMatches={goToMatches} goToLista={goToLista}/>
+        return <TelaInicial goToMatches={goToMatches}/>
       case "matches":
-        return <TelaMatches goToInicial={goToInicial} goToLista={goToLista}/>
-      case "lista":
-        return <TelaLista goToInicial={goToInicial} goToMatches={goToMatches}/>
+        return <TelaMatches goToInicial={goToInicial}/>
       default:
-        return <TelaInicial goToMatches={goToMatches} goToLista={goToLista} />
+        return <TelaInicial goToMatches={goToMatches}/>
     }
   }
 

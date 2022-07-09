@@ -1,49 +1,87 @@
-import React, { useEffect } from 'react'
-import './TelaInicial.css';
-import { useState } from 'react'
+import React from 'react'
+import { ContainerMatches , DivMatches, DivPhoto, FooterMatches, HeaderMatches, MatchPhoto } from './Matchesestilo'
 import axios from 'axios';
+import { useState , useEffect } from 'react';
 
-export default function TelaInicial(props) { 
-    const [profile, setProfile] = useState([])
-    const [profileId, setProfileId] = useState("")
 
-    useEffect(() =>{
-        GetProfileToChoose()
-    }, [])
+export default function Matches(props) {
 
-    const GetProfileToChoose = () =>{
+    const [matchUser, setmatchUser] = useState([]);
+    const [likedMatch, setlikedMatch] = useState([])
+
+      useEffect(() => {
+        GetProfileToChoose();
+  }, []);
+    
+      const GetProfileToChoose = () => {
+        const url = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/gustavo1/person"
+      axios
+        .get(url)
+        .then((response) => {
+          setmatchUser(response.data.profile);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      }
+    
+    const ChoosePerson = (liked) => {
+        const url = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/gustavo1/choose-person"
+        const body = {
+        choice: liked,
+        id: matchUser.id,
+      };
+      axios
+        .post(url, body)
+        .then((resp) => {
+            if (resp.data.isMatch === true) {
+                setlikedMatch(resp.data.profile);
+                console.log("Esse gostou: isMatch = ", resp.data.isMatch)
+                GetProfileToChoose();
+                console.log(likedMatch)
+              } else {
+                console.log("Esse não gostou: isMatch = ", resp.data.isMatch)
+                GetProfileToChoose()
+              }
+        })
+      }
+    
+      const ClickLike = () => {
+        console.log("Clicou sim")
+        ChoosePerson(true);
+      };
+
+      const Clear = () =>{
+        const url ="https://us-central1-missao-newton.cloudfunctions.net/astroMatch/gustavo/clear"
+        
         axios
-        .get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/:gustavo/person")
+        .put(url)
         .then((resp) =>{
-            setProfile(resp.data.profile)
-            console.log(resp)
+            alert("API apagada")
         })
         .catch((err) =>{
             console.log(err)
         })
-    }
+      }
 
-
-    return (
-        <div className='Container'>
-            <header className='Header'>
-                <span>❤️</span>
-                <h2>Astro Match</h2>        
+  return (
+    <ContainerMatches>
+        <DivMatches>
+            <HeaderMatches>
+                Astro Match
                 <button onClick={props.goToMatches}>Matches</button>
-            </header>
-
-            <main className='Main'>
-                <img src={profile.photo} />
-            </main>
-            <div>
-              <p>{profile.name}, {profile.age}</p>
-                <p>{profile.bio}</p>
-            </div>
-
-            <footer className='Footer'>
-                <button>Like</button>
-                <button>Dislike</button>
-            </footer>
-        </div>
-    )
+            </HeaderMatches>
+            <DivPhoto>
+                <MatchPhoto src={matchUser.photo} />
+                <p>{matchUser.name}, {matchUser.age}</p>
+                <p>{matchUser.bio}</p>
+            </DivPhoto>
+            <FooterMatches>
+                <button onClick={() => GetProfileToChoose()}>Dislike</button>
+                <button onClick={ClickLike}>Like</button>
+            </FooterMatches>
+        </DivMatches>
+        <button onClick={Clear}>Apagar</button>
+    </ContainerMatches>
+  )
 }
