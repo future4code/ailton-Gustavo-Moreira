@@ -102,6 +102,72 @@
     padding-bottom: 9rem;
 }
 
+/* Login  */
+
+.HeaderLogin {
+    padding-top: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.FooterButtonLogin{
+    padding-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 17rem;
+}
+
+/* Admin  */
+
+.HeaderAdm {
+    padding-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MainButton {
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3rem;
+}
+
+.CardAdm {
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 50rem;
+    align-self: center;
+    margin-bottom: 1rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5rem;
+    border-radius: 6px;
+    box-shadow: 2px 2px 10px darkgray;
+
+}
+
+.footerAdm{
+    padding-bottom: 15rem;
+}
+
+/* Criar Viagens  */
+
+.FooterButtonCriarViagens{
+    padding-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 14rem;
+}
+
+
 /* Geral  */
 
 button{

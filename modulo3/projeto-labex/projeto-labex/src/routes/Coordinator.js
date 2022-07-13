@@ -14,3 +14,14 @@ export const goToApplicationFormPage = (navigate) => {
     navigate("/ApplicationForm")
 }
 
+export const goToLoginPage = (navigate) => {
+    navigate("/LoginPage")
+}
+
+export const goToAdminHomePage = (navigate) => {
+    navigate("/AdminHome")
+}
+
+export const goToCreateTripPage = (navigate) => {
+    navigate("/CreateTrip")
+}
