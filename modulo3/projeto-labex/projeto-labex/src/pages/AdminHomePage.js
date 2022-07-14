@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { goToHomePage } from "../routes/Coordinator"
 import { useRequestData } from "./Hook/useRequestData"
@@ -10,6 +10,7 @@ import { useProtectedPage } from "./Hook/useProtectedPage"
 export const AdminHomePage = () =>{
 
     useProtectedPage()
+
 
     const [trips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
 

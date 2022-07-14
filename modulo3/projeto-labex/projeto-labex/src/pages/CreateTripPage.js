@@ -53,7 +53,6 @@ export const CreateTripPage = () =>{
             }
           })
           .then((resp)=>{
-            console.log(resp)
             alert("Viagem Criada!")
             setName("")
             setPlanet("")
@@ -64,7 +63,6 @@ export const CreateTripPage = () =>{
           })
           .catch((err)=>{
             console.log("Deu erro", err.response)
-            console.log("Valor do body", body )
           })
     }
 

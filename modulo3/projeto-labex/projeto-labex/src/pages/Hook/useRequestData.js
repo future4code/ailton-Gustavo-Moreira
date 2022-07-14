@@ -7,6 +7,10 @@ const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState("");
 
 useEffect(() => {
+    getTrip(url)
+}, [url])
+
+const getTrip = (url) =>{
     setIsLoading(true);
     axios
     .get(url)
@@ -19,6 +23,7 @@ useEffect(() => {
         setIsLoading(false)
         setError(err)
     })
-}, [url])
-    return [data, isLoading, error]
+}
+
+    return [data, isLoading, error, getTrip]
 }

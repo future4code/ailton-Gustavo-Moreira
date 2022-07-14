@@ -13,7 +13,7 @@ export const ListTripsPage = () => {
     const getTrips = trips && trips.map((trip) => {
         return <CardViagens key={trip.id} trip={trip} />
     })
-    console.log(trips)
+    
 
     return (
         <div className="Container">
