@@ -10,8 +10,11 @@ export const ApplicationFormPage = () => {
     const navigate = useNavigate()
     const [trips, isLoading, error] = useRequestData(`${BASE_URL}/trips`)
     const [tripName, setTripName] = useState("")
+    const [TripId, setTripId] = useState("")
+
     const chooseTrip = (event) => {
         setTripName(event.target.value)
+        setTripId(event.target.value)
     }
 
     const { form, onChange, cleanFields } = useForm({
@@ -22,10 +25,11 @@ export const ApplicationFormPage = () => {
         country: "",
     });
 
-    const ApplytoTrip = (id) => {
-        const url = `${BASE_URL}/trips/${id}/apply`
+    const ApplytoTrip = () => {
+        const url = `${BASE_URL}/trips/${TripId}/apply`
         axios.post(url, form)
         .then((resp) => {
+            alert("Inscrição realizada com Sucesso!")
             console.log("Formulário enviado!", resp);
             cleanFields()
         })
@@ -39,6 +43,14 @@ export const ApplicationFormPage = () => {
         event.preventDefault()
     }
 
+    const tripMap = !isLoading && trips && trips.length > 0 && trips.map((trip) => {
+        return (
+            <option key={trip.id} value={trip.id}>
+                {trip.name}
+            </option>
+        );
+    })
+
     return (
         <div className="Container">
             <div>
@@ -50,13 +62,7 @@ export const ApplicationFormPage = () => {
 
                 <select onChange={chooseTrip} className="Input">
                     <option value={""}>Escolha uma Viagem</option>
-                    {!isLoading && trips && trips.length > 0 && trips.map((trip) => {
-                        return (
-                            <option key={trip.id} value={trip.id}>
-                                {trip.name}
-                            </option>
-                        );
-                    })}
+                    {tripMap}
                 </select>
 
                 <input

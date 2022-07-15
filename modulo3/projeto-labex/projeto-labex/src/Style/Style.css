@@ -193,6 +193,18 @@
     flex-direction: column;
 }
 
+.CardBotaoCandidatos {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.CentralizarTexto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Geral  */
 
 button{

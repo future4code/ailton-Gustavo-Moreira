@@ -6,20 +6,23 @@ import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { goToAdminHomePage } from "../routes/Coordinator"
 import { CardTripDetails } from "./components/CardTripDetails"
-
+import { CardCandidate } from "./components/CardCandidate"
+import {CardApproved} from "./components/CardApproved"
 
 export const TripDetailsPage = () => {
     useProtectedPage()
     const navigate = useNavigate()
 
-    const [trip, setTrip] = useState({})
+    const [trip, setTrip] = useState([])
     const [candidate, setCandidate] = useState([])
+    const [approved, setApproved] = useState([])
 
-    const pathParams = useParams(trip.id)
+    const pathParams = useParams()
 
     useEffect(() => {
         GetTripDetail()
     }, [])
+
     const GetTripDetail = () => {
         const url = `${BASE_URL}/trip/${pathParams.id}`
         const token = localStorage.getItem("token")
@@ -32,36 +35,46 @@ export const TripDetailsPage = () => {
                 console.log(resp)
                 setTrip(resp.data.trip)
                 setCandidate(resp.data.trip.candidates)
-                console.log(resp.data.trip.candidates)
+                setApproved(resp.data.trip.approved)
             })
             .catch((err) => {
                 console.log(err)
             })
-
     }
 
     return (
         <div className="Container">
             <h1 className="Centralizar">Detalhes da Viagem</h1>
             <div>
-                <CardTripDetails trip={trip} />
+                <CardTripDetails key= {trip.id} trip={trip} />
                 <div className="Centralizar">
                     <button onClick={() => goToAdminHomePage(navigate)}>Voltar</button>
                 </div>
             </div>
+
             <div className="CentralizarPendente">
-                <h1 >Candidatos pendentes</h1>
+                {candidate.length !== 0 ?
+                <div>
+                <h1 className="CentralizarTexto">Candidatos Pendentes</h1>
                 {candidate.map((candidato) => {
                     return (
-                        <div key={candidato.name} className="CardPendentes">
-                            <p>Nome: {candidato.name}</p>
-                            <p>Idade: {candidato.age}</p>
-                            <p>País: {candidato.country}</p>
-                            <p>Texto: {candidato.applicationText}</p>
-                        </div>
-                    )
-                })}
+                        <CardCandidate key={candidato.id} candidato={candidato} trip={trip}/>
+                    )})}
+                    </div>
+                    : <h1>Lista Vazia</h1>}
+            </div>
 
+            <div className="CentralizarPendente">
+                {approved.length !== 0 ?
+                <div>
+                 <h1 className="CentralizarTexto">Candidatos Aprovados</h1>
+                {approved.map((aprovado) => {
+                    return (
+                        <CardApproved key={aprovado.id} aprovado={aprovado} />
+                        )})}
+                </div>
+                : <h1>Sem Candidatos Aprovados</h1>}
+               
             </div>
 
         </div>
