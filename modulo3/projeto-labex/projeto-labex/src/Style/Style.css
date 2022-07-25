@@ -1,0 +1,224 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Container {
+  background-color: blanchedalmond;
+  height:100%;  
+}
+
+/* Home  */
+.HeaderHome {
+    padding-top: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.FooterHome{
+    display: flex;
+    padding-top: 5rem;
+    padding-bottom: 25rem;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ListTrips  */
+
+.HeaderListTrips {
+    padding-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.CountainerListTrip{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.CardViagens {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 40rem;
+    align-self: center;
+    margin-bottom: 1rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5rem;
+    border-radius: 6px;
+    box-shadow: 2px 2px 10px darkgray;
+    background-color: white;
+
+}
+
+
+.Centralizar {
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Margem {
+    margin-top: 0.5em;
+    font-size: large;
+}
+
+/* ApplicationForm  */
+
+.ManiInput{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.Input {
+    width: 30rem;
+    height: 3rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding-left: 1rem;
+}
+
+.FooterButton {
+    margin-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8rem;
+}
+
+
+/* Login  */
+
+.HeaderLogin {
+    padding-top: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.FooterButtonLogin{
+    padding-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 17rem;
+}
+
+/* Admin  */
+
+.HeaderAdm {
+    padding-top: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MainButton {
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3rem;
+}
+
+.CardAdm {
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 50rem;
+    align-self: center;
+    margin-bottom: 1rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5rem;
+    border-radius: 6px;
+    box-shadow: 2px 2px 10px darkgray;
+
+}
+
+.footerAdm{
+    padding-bottom: 15rem;
+}
+
+/* Criar Viagens  */
+
+.FooterButtonCriarViagens{
+    padding-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 14rem;
+}
+
+/* Detalhes  */
+
+.CardPendentes {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 40rem;
+    align-self: center;
+    margin-bottom: 1rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5rem;
+    border-radius: 6px;
+    box-shadow: 2px 2px 10px darkgray;
+    background-color: white;
+
+}
+
+.CentralizarPendente {
+    padding-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.CardBotaoCandidatos {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.CentralizarTexto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Geral  */
+
+button{
+    border-radius: 10px;
+    width: 8em;
+    height: 2em;
+    background-color: yellowgreen;
+    color: white;
+    font-size: larger;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+button:hover{
+background-color: gray;
+cursor: pointer;
+}
