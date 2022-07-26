@@ -5,7 +5,7 @@ import { goToAdminHomePage } from "../routes/Coordinator"
 import { useForm } from "./Hook/useForm"
 
 export const LoginPage = () => {
-    const {form, onChange} = useForm({email:"", password:""})
+    const {form,    } = useForm({email:"", password:""})
     // const [email, setEmail] = useState("")
     // const [password, setPassword] = useState("")
     // const [form, setForm] = useState({email:"", password:""})

@@ -1,0 +1,39 @@
+.ContainerCadastro{
+    display: flex;
+    flex-direction: column;
+}
+
+.HeaderCadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.InputCadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.InputDetalhe1Cadastro{
+    width: 15rem;
+    margin-top: 1rem;
+}
+
+.InputDetalhe2Cadastro{
+    width: 15rem;
+    margin-top: 1rem;
+}
+
+.InputDetalhe3Cadastro{
+    width: 15rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.BotaoCadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

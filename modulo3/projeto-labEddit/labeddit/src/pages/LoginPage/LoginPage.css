@@ -1,0 +1,47 @@
+.ContainerLogin{
+    display: flex;
+    flex-direction: column;
+}
+
+.HeaderLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.InputLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.InputDetalhe1Login{
+    width: 15rem;
+}
+
+.InputDetalhe2Login{
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    width: 15rem;
+}
+
+.Botao1Login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Botao2Login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.BotaoDetalhe1Login{
+    width: 15rem;
+}
