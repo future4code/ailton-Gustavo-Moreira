@@ -33,6 +33,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .Botao2Login{
@@ -44,4 +45,6 @@
 
 .BotaoDetalhe1Login{
     width: 15rem;
+    background-color: #ffbc40;
+    border-radius: 5px;
 }

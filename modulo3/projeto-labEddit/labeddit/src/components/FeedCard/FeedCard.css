@@ -1,0 +1,64 @@
+.FeedCardContainer{
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: gainsboro;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    flex-direction: column;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.FeedCardHeader{
+    color: gray;
+    margin-top: 0.5rem;
+}
+
+.FeedCardMain{
+    display: flex;
+
+}
+
+.FeedCardFooter{
+    display: flex;
+    justify-content:space-between;
+}
+
+.FeedCardFooterVoto{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 7rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.FeedCardFooterMensagem{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 3.5rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.FeedCardImagem{
+    height: 1rem;
+    width: 2rem;
+}
+
+.FeedCardImagemBotao{
+    height: 1rem;
+    width: 1rem;
+}
+
+.FeedCardBotao{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden; 
+}

@@ -5,6 +5,8 @@ import "./CadastroPage.css"
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 import { goToFeedPage } from "../../routes/Coordinator";
+import { goToLoginPage } from "../../routes/Coordinator";
+import logo from "../../img/logo.jpeg"
 
 const CadastroPage = () => {
 
@@ -32,8 +34,14 @@ const CadastroPage = () => {
 
     return (
         <div className="ContainerCadastro">
-            <div className="HeaderCadastro">Header</div>
-            <div>Texto Cadastro</div>
+            <div className="HeaderCadastro">
+                <div></div>
+                <img src={logo} className="FeedPageImage" />
+                <button onClick={() => goToLoginPage(navigate)}>Voltar</button>
+            </div>
+            <div className="MainCadastro">
+                <h2>Olá, Seja Bem Vindo(a) ao LabEddit ;)</h2>
+            </div>
             <form onSubmit={Signup}>
                 <div className="InputCadastro">
                     <input
@@ -66,8 +74,20 @@ const CadastroPage = () => {
                         required
                     />
                 </div>
+                <div className="FooterCadastro">
+                    <p>Ao continuar, você concorda com os nossos <strong>Contrato de Usuario</strong> e nossa <strong>Política de Privacidade</strong></p>
+                    <input
+                        type="checkbox"
+                        id="userAgreement"
+                        name="Agreement"
+                        required />
+
+                    <label
+                        htmlFor="userAgreement">Eu concordo em receber emails sobre coisas legais no LabEddit!
+                    </label>
+                </div>
                 <div className="BotaoCadastro">
-                    <button >Cadastrar</button>
+                    <button className="BotaoCadastroDetalhe">Cadastrar</button>
                 </div>
             </form>
         </div>

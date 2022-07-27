@@ -4,9 +4,14 @@
 }
 
 .HeaderCadastro{
+    background-color: #ffbc40;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
+    padding-right: 1rem;
+    padding-left: 3rem;
 }
 
 .InputCadastro{
@@ -14,6 +19,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.MainCadastro{
+    padding-left: 1rem;
 }
 
 .InputDetalhe1Cadastro{
@@ -36,4 +45,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
+}
+
+.BotaoCadastroDetalhe{
+    background-color: #ffbc40;
+    border-radius: 5pt;
+    width: 10rem;
+    height: 2rem;
+}
+
+.FooterCadastro{
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
 }

@@ -7,22 +7,15 @@ import { useEffect } from "react";
 import { BASE_URL } from "../../constants/url";
 import axios from "axios";
 import { goToCadastroPage } from "../../routes/Coordinator";
+import logo from "../../img/logo.jpeg"
 
 const LoginPage = () => {
     const { form, onChange, cleanFields } = useForm({ email: "", password: "" })
 
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     const token = window.localStorage.getItem('token')
-    //     if (token === null) {
-    //         goToFeedPage(navigate)
-    //     }
-    // }, [navigate])
-
     const Login = (event) => {
         // evento do form onSubmit
-        console.log("deu boa")
         event.preventDefault()
         const url = `${BASE_URL}/users/login`
         axios.post(url, form)
@@ -41,7 +34,7 @@ const LoginPage = () => {
     return (
         <div className="ContainerLogin">
             <div className="HeaderLogin">
-                <h1>Imagem</h1>
+                <img src={logo}/>
                 <h1>LabEddit</h1>
                 <span>Porjeto de rede social</span>
             </div>
