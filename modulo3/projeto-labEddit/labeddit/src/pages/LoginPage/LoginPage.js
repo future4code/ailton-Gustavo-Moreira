@@ -3,7 +3,6 @@ import "./LoginPage.css"
 import { useForm } from "../../hooks/useForm";
 import { goToFeedPage } from "../../routes/Coordinator";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { BASE_URL } from "../../constants/url";
 import axios from "axios";
 import { goToCadastroPage } from "../../routes/Coordinator";
@@ -22,14 +21,12 @@ const LoginPage = () => {
             .then((resp) => {
                 localStorage.setItem("token", resp.data.token)
                 goToFeedPage(navigate)
-                
             })
             .catch((err) => {
                 alert("E-mail ou senha invalida")
                 console.log("Deu errado", err.response)
             })
     }
-
 
     return (
         <div className="ContainerLogin">
@@ -63,11 +60,15 @@ const LoginPage = () => {
                     />
                 </div>
                 <div className="Botao1Login">
-                    <button className="BotaoDetalhe1Login">Login</button>
+                    <button
+                     className="BotaoDetalhe1Login">Login</button>
                 </div>
             </form>
             <div className="Botao2Login">
-            <button className="BotaoDetalhe1Login" onClick={() => goToCadastroPage(navigate)}>Crie sua Conta!</button>
+            <button 
+            className="BotaoDetalhe2Login" 
+            onClick={() => goToCadastroPage(navigate)}
+            >Crie sua Conta!</button>
             </div>
         </div>
     )

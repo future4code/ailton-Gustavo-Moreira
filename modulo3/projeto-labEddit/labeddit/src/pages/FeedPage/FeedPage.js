@@ -34,7 +34,7 @@ const FeedPage = () =>{
 
     const CreatePost = (event) =>{
         console.log("Deu boa")
-        event.preventDefault()
+        // event.preventDefault()
         const url = `${BASE_URL}/posts`
         const token = localStorage.getItem("token")
         const header = {
@@ -52,9 +52,11 @@ const FeedPage = () =>{
         })
     }
 
-    useEffect((
-        
-    ) => {}, [])
+    useEffect(() => {
+    
+    }, [])
+
+    
 
     return (
         <div className="FeedPageContainer">
@@ -67,8 +69,11 @@ const FeedPage = () =>{
                     <button onClick={limparlocalStorage}>Logout</button>
                 </div>
             </div>
-            <div className="FeedPageMain">
-            <form onSubmit={CreatePost}>
+            <div>
+                {/* <h3>Bem vindo Nome. O que iremos postar hoje?</h3> */}
+            </div>
+            <div >
+            <form onSubmit={CreatePost} className="FeedPageMain">
 
                 <input 
                 name="title"
@@ -79,7 +84,7 @@ const FeedPage = () =>{
                 required
                 />
 
-                <input 
+                <textarea 
                 name="body"
                 className="FeedPageInput2"
                 placeholder="Escrava seu post..."
@@ -93,7 +98,7 @@ const FeedPage = () =>{
             </div>
             </form>
             </div>
-            <div>
+            <div className="Alinhar">
             {isLoading && <p>Carregando...</p>}
             {!isLoading && error && <p className="Centralizar">{error.message}</p>}
             {!isLoading && feeds && feeds.length > 0 && getFeeds}

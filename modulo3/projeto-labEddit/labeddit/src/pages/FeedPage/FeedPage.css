@@ -1,61 +1,78 @@
 
-.FeedPageContainer{
-    display: flex;
-    flex-direction: column;
-}
+    .FeedPageContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .FeedPageHeader{
+        background-color: #ffbc40;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 1rem;
+        padding-left: 3rem;
+    }
+   
+    .FeedPageImage{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    
+    .FeedPageMain{
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .FeedPageMain2{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .FeedPageInput1{
+        width: 15rem;
+        margin-bottom: 1rem;
+        border-radius: 5px;
+        background-color: gainsboro;
+        border: none;
+        height: 2rem;
+    }
+    
+    .FeedPageInput2{
+        width: 15rem;
+        margin-bottom: 1rem;
+        height: 5rem;
+        border-radius: 5px;
+        background-color: gainsboro;
+        border: none;
+    }
+    
+    .FeedPageButton{
+        display: flex;
+        width: 15rem;
+        justify-content: center;
+        background-color: #ffbc40;
+        border-radius: 5px;
+        height: 1.5rem;
+        align-items: center;
+        border: none;
+    }
+    
+    .Centralizar{
+        padding-top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.FeedPageHeader{
-    background-color: #ffbc40;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: 1rem;
-    padding-left: 3rem;
-}
-
-.FeedPageImage{
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-.FeedPageMain{
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-}
-
-.FeedPageMain2{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.FeedPageInput1{
-    width: 15rem;
-    margin-bottom: 1rem;
-    border-radius: 5px;
-}
-
-.FeedPageInput2{
-    width: 15rem;
-    margin-bottom: 1rem;
-    height: 5rem;
-    border-radius: 5px;
-}
-
-.FeedPageButton{
-    display: flex;
-    width: 15rem;
-    justify-content: center;
-    background-color: #ffbc40;
-    border-radius: 5px;
-}
-
-.Centralizar{
-    padding-top: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .Alinhar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }

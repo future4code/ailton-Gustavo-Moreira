@@ -21,6 +21,7 @@ useEffect(() => {
     .then((resp) =>{
         setIsLoading(false)
         setData(resp.data)
+        console.log(resp)
        
     })
     .catch((err) =>{
