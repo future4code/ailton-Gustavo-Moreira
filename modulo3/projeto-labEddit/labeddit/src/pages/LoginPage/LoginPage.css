@@ -1,0 +1,129 @@
+/* Celular 
+
+@media screen and (min-width:375px) and (max-width:667px){
+.ContainerLogin{
+    display: flex;
+    flex-direction: column;
+}
+}
+
+@media screen and (min-width:375px) and (max-width:667px){
+.HeaderLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+}
+
+@media screen and (min-width:375px) and (max-width:667px){
+.InputLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+}
+
+@media screen and (min-width:375px) and (max-width:667px){
+.InputDetalhe1Login{
+    width: 15rem;
+}
+}
+
+@media screen and (min-width:375px) and (max-width:667px){
+.InputDetalhe2Login{
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    width: 15rem;
+}
+}
+
+@media screen and (min-width:375px) and (max-width:667px){
+.Botao1Login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+}
+
+@media screen and (min-width:375px) and (max-width:667px){
+.Botao2Login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+}
+
+@media screen and (min-width:360px) and (max-width:660px){
+.BotaoDetalhe1Login{
+    border-color: #ffbc40;
+    background-color: white;
+    border-radius: 5px;
+}
+} */
+
+/* PC  */
+
+    .ContainerLogin{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .HeaderLogin{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .InputLogin{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .InputDetalhe1Login{
+        width: 15rem;
+    }
+    
+    .InputDetalhe2Login{
+        margin-top: 1rem;
+        margin-bottom: 3rem;
+        width: 15rem;
+    }
+    
+    .Botao1Login{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .Botao2Login{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+    }
+    
+    .BotaoDetalhe1Login{
+        width: 15rem;
+        background-color: #ffbc40;
+        border-radius: 10px;
+        height: 1.5rem;
+    }
+
+    .BotaoDetalhe2Login{
+        width: 10rem;
+        border-color: #ffbc40;
+        background-color: white;
+        border-radius: 10px;
+        height: 1.5rem;
+    }
+    
