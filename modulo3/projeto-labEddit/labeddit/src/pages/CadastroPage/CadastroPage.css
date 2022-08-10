@@ -1,0 +1,62 @@
+.ContainerCadastro{
+    display: flex;
+    flex-direction: column;
+}
+
+.HeaderCadastro{
+    background-color: #ffbc40;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1rem;
+    padding-left: 3rem;
+}
+
+.InputCadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.MainCadastro{
+    padding-left: 1rem;
+}
+
+.InputDetalhe1Cadastro{
+    width: 15rem;
+    margin-top: 1rem;
+}
+
+.InputDetalhe2Cadastro{
+    width: 15rem;
+    margin-top: 1rem;
+}
+
+.InputDetalhe3Cadastro{
+    width: 15rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.BotaoCadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.BotaoCadastroDetalhe{
+    background-color: #ffbc40;
+    border-radius: 5pt;
+    width: 10rem;
+    height: 2rem;
+}
+
+.FooterCadastro{
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
