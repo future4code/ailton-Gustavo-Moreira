@@ -1,0 +1,17 @@
+1 
+a) get
+b) :Promise<any[]>
+
+2
+a) A nomeada o async vem antes, e temos que usar function.
+
+3
+a) não teve problemas.
+b) para evitar que entre informações indevidas. 
+
+4
+a) Put ou post
+
+6 
+a)ele nao espera uma requisição ser respondida para mandar outra requisição.
+b) ganha performace
