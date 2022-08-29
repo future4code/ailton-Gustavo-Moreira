@@ -1,0 +1,11 @@
+1 a) chave estrangeira é um compo onde os dados dela terão valores com base em outro campor de outra tabela.
+c) erro de restrição de chave estrangeira
+e) ele nao deu erro, mas tambem não deletou o filme
+
+2 a)Está relacinando os atores com os filmes.
+c) diz que o filme nao existe
+d) erro 1451, nao pode deletar por conta da chave estrangeira
+
+3 a) Esse query ajunta duas tabelas. o on faz a junção
+
+5 a) para unir as tabelas
