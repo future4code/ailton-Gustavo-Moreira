@@ -1,0 +1,42 @@
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "name": "Banguela",
+    "email": "branquelo@gmail.com",
+    "password": "12345"
+}
+
+###
+
+GET http://localhost:3003/users
+
+###
+
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "Violão",
+    "price": 500,
+    "image_url": "https://i.picsum.photos/id/145/4288/2848.jpg?hmac=UkhcwQUE-vRBFXzDN1trCwWigpm7MXG5Bl5Ji103QG4"
+}
+
+###
+
+GET http://localhost:3003/products
+
+###
+
+POST http://localhost:3003/purchases
+Content-Type: application/json
+
+{
+    "user_id": "1662081648999",
+    "product_id": "1662143839939",
+    "quantity": 8
+}
+
+###
+
+GET http://localhost:3003/users/1662081648999/purchases
