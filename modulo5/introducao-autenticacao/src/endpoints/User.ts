@@ -77,5 +77,21 @@ class UserEndpoint{
             res.status(500).send({message: error.message})
          }
     }
+
+    async getUser(req: Request, res: Response){
+        try {
+            const {token} = req.body
+
+            const authentication = new Authenticator().verifyToken(token)
+            const user = new UserDataBase().getUserById(authentication[0].id)
+
+            console.log({user})
+
+            res.status(200).send({user})
+            
+        } catch (error:any) {
+            res.status(500).send({message: error.message})
+        }
+    }
 } 
 export default UserEndpoint

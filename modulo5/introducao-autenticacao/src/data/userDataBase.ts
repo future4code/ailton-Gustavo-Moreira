@@ -19,5 +19,10 @@ export class UserDataBase extends BaseDatabase{
         const result = await this.getConnection().select("*").from("User_Autentificacao").where({password: password})
         return result
     }
+
+    public async getUserById(id:string){
+        const result = await this.getConnection().select("*").from("User_Autentificacao").where({id: id})
+        return result
+    }
     
 }
