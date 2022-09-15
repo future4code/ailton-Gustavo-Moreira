@@ -28,27 +28,21 @@ class UserEndpoint {
             }
             const userDB = new UserDataBase
 
-            // const verifyEmail = await userDB.getUserByEmail(email)
-
-            // if (verifyEmail) {
-            //     throw new EmailExist()
-            // }
-
-
+            const verifyEmail = await userDB.getUserByEmail(email)
+            
             const id = new GenerateId().createId()
             
-
             const hashPassword = await new HashManager().hashDaSenha(password)
-
-            const user = new User(id, name, email, hashPassword, role)
-
-            const response = await userDB.creatUser(user)
-
-            const token = new Authenticator().generateToken({ id, role })
-
-            // console.log(user)
-
-            res.status(201).send({ message: response, token })
+            
+            if (verifyEmail.getId()) {
+                throw new EmailExist()
+            }else {
+                const user = new User(id, name, email, hashPassword, role) 
+                const response = await userDB.creatUser(user)
+                const token = new Authenticator().generateToken({ id, role })
+                res.status(201).send({ message: response, token })
+            }
+            
 
 
         } catch (error: any) {

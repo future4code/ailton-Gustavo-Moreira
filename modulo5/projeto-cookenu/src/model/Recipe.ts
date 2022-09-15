@@ -3,7 +3,8 @@ class Recipe{
         private id: string,
         private titulo: string,
         private descricao: string,
-        private data_criacao: string
+        private data_criacao: string,
+        private user_id: string
     ){}
 
     public getId(){
@@ -17,6 +18,9 @@ class Recipe{
     }
     public getData(){
         return this.data_criacao
+    }
+    public getUserId(){
+        return this.user_id
     }
 }
 

@@ -12,21 +12,18 @@ class RecipeEndpoint {
     public async creatRecipe(req: Request, res: Response) {
         try {
 
-            const { titulo, descricao, data_criacao } = req.body
+            const { titulo, descricao, data_criacao, user_id } = req.body
             
 
-            if (!titulo || !descricao || !data_criacao) {
+            if (!titulo || !descricao || !data_criacao || !user_id) {
                 throw new MissingFields()
             }
-
-            // let data_brasileira = data_criacao;
-            // let data_americana = data_brasileira.split("/").reverse().join("-");
 
             const recipeDB = new RecipeDataBase
 
             const id = new GenerateId().createId()
 
-            const recipe = new Recipe(id, titulo, descricao, data_criacao)
+            const recipe = new Recipe(id, titulo, descricao, data_criacao, user_id)
 
             const response = await recipeDB.creatRecipe(recipe)
 
