@@ -1,4 +1,5 @@
 import Recipe from "../model/Recipe";
+import RecipeView from "../model/RecipeView";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class RecipeDataBase extends BaseDatabase{
@@ -12,5 +13,10 @@ export class RecipeDataBase extends BaseDatabase{
         }).into("Receita_Cookenu")
         
         return `A Receita ${recipe.getTitulo()} foi criada com sucesso!`
+    }
+
+    public async getRecipeByID(id: string){
+        const result = await this.getConnection().select("*").from("Receita_Cookenu").where({id: id})
+        return new RecipeView(result[0].titulo, result[0].descricao)
     }
 }

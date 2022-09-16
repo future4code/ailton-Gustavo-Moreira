@@ -3,6 +3,7 @@ import { UserDataBase } from "../data/UserDataBase";
 import { EmailExist } from "../error/EmailExist";
 import { MissingFields } from "../error/MissingFields";
 import { WrongType } from "../error/WrongType";
+import Following from "../model/Following";
 import User from "../model/User";
 import Authenticator, { typeUser } from "../services/Authenticator";
 import GenerateId from "../services/GenerateId";
@@ -80,6 +81,10 @@ class UserEndpoint {
         try {
             const token = req.headers.authorization as string
 
+            if(!token){
+                throw new MissingFields()
+            }
+
             const authentication = new Authenticator().verifyToken(token)
             const profile = await new UserDataBase().getUserById(authentication.id)
 
@@ -94,12 +99,14 @@ class UserEndpoint {
         try {
             const {id} = req.params
 
-            // const token = req.headers.authorization as string
+            const token = req.headers.authorization as string
+            if(!token){
+                throw new MissingFields()
+            }
             // const authentication = new Authenticator().verifyToken(token)
+            // const user = await new UserDataBase().getUserById(authentication.id)
+            new Authenticator().verifyToken(token)
 
-            // if(!authentication){
-            //     throw new Error("Não autorizado")
-            // }
             const userProfile = await new UserDataBase().getUserById(id)
 
             res.status(200).send({userProfile})
@@ -108,5 +115,94 @@ class UserEndpoint {
             res.status(500).send({message: error.message})
         }
     }
+
+    public async fallowUser(req: Request, res: Response){
+        try {
+
+            const {following_id} = req.body
+            if(!following_id){
+                throw new MissingFields()
+            }
+
+            //pegando o Usuario
+            const token = req.headers.authorization as string
+            if(!token){
+                throw new MissingFields()
+            }
+            const authentication = new Authenticator().verifyToken(token)
+            const user = await new UserDataBase().getUserById(authentication.id)
+            //pegando o Id e nome do usuario
+            const user_id = user.getId()
+            const user_name = user.getName()
+
+            //pegando Nome da pessoa a seguir
+            const following = await new UserDataBase().getUserById(following_id)
+            const following_name = following.getName()
+
+            const userDB = new UserDataBase
+
+            const id = new GenerateId().createId()
+
+            const fallow = new Following(id, user_id, following_id)
+
+            const response = userDB.fallowUser(fallow)
+            
+            res.status(201)
+            .send({message:`${user_name} está seguindo ${following_name}`})
+
+        } catch (error:any) {
+            res.status(500).send({ message: error.message })
+        }
+        
+    }
+
+    async followById(req: Request, res: Response){
+        try {
+            const token = req.headers.authorization as string
+
+            if(!token){
+                throw new MissingFields()
+            }
+
+            const authentication = new Authenticator().verifyToken(token)
+            const user = await new UserDataBase().getUserById(authentication.id)
+
+            const user_id = user.getId()
+            const userDB = new UserDataBase
+
+            const following = await userDB.getFollowById(user_id)
+
+            const mapFollowing = following.map((follow: string) =>{
+                return follow
+            })
+
+            console.log(mapFollowing)
+
+            res.status(200).send({Seguindo:mapFollowing})
+
+        } catch (error:any) {
+            res.status(500).send({message: error.message})
+        }
+    }
+
+    async recipeByFeed(req: Request, res: Response){
+        try {
+            const token = req.header("authorization") as string
+
+            if(!token){
+                throw new MissingFields()
+            }
+
+            const authentication = new Authenticator().verifyToken(token)
+
+             const feed = await new UserDataBase().getFeedById(authentication.id)
+
+             res.status(200).send({feed})
+
+        } catch (error:any) {
+            res.status(500).send({message: error.message})
+        }
+    }
+
 }
 export default UserEndpoint
