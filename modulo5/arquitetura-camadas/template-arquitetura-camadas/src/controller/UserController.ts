@@ -1,16 +1,25 @@
-import { BaseDatabase } from "../database/BaseDatabase"
-import { User } from "../models/User"
+import { Request, Response } from "express";
+import { UserBusiness } from "../business/UserBusiness";
+import { User, UserDTO } from "../models/User"
 
-export class UserController extends BaseDatabase {
-    public async createUser(user: User){
-        await this.getConnection().insert({
-            id: user.getId(),
-            name: user.getName(),
-            email: user.getEmail(),
-            password: user.getPassword(),
-            role: user.getRole()
-        }).into("Arq_Users")
+export class UserController {
+    async create(req: Request, res: Response){
+
+    try {
+            const {name, email, password, role} = req.body
+            
+            const userBusiness = new UserBusiness()
+
+            const user: UserDTO = { name, email, password, role}
+
+            const token = await userBusiness.create(user)
+
+
+            res.status(201).send({message: token})
+
+    } catch (error: any) {
+        res.status(500).send({ message: error.message })
+    }
         
-        return `Usuário ${user.getName()} criado com sucesso`
     }
 }

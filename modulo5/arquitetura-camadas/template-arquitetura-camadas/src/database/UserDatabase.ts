@@ -17,7 +17,15 @@ export class UserDatabase extends BaseDatabase {
     }
 
     public async getUserByEmail(email: string){
-        const result = await this.getConnection().select("*").from("Arq_Users").where({email: email})   
-        return new User(result[0]?.id, result[0]?.name, result[0]?.email, result[0]?.password, result[0]?.role)
+        const result = await this.getConnection()
+        .select("*")
+        .from(UserDatabase.TABLE_USERS)
+        .where({email: email})  
+        
+        if(!result.length){
+            return undefined
+        }
+
+        return new User(result[0].id, result[0].name, result[0].email, result[0].password, result[0].role)
     }
 }
