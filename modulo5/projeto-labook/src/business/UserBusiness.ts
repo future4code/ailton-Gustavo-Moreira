@@ -35,23 +35,16 @@ export class UserBusiness {
         if (typeof email !== "string" || !email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/))  {
             throw new ParamsError()
         }
-
-
         const userDB = await this.userDatabase.userByEmail(email)
-        
         if (userDB){
             throw new EmailExist()
         }
-
         const id = this.idGenerator.generate()
-        const hashedPassword = await this.hashManager.hash(id)
-
+        const hashedPassword = await this.hashManager.hash(password)
         const user = new User(
-            id, name, email, hashedPassword, USER_ROLES.ADMIN
+            id, name, email, hashedPassword, USER_ROLES.NORMAL
         )
-
         await this.userDatabase.createUser(user)
-
         const tokenAuth: ItokenAuth = {
             id: user.getId(),
             role: user.getRole()
@@ -66,8 +59,8 @@ export class UserBusiness {
 
     public login = async (input:InputLoginDTO ) => {
         
-        const email = input.email
-        const password = input.password
+        const {email, password} = input
+      
 
         if (!email || !password){
             throw new MissinFields()
@@ -97,9 +90,9 @@ export class UserBusiness {
 
         const correctPassword = await this.hashManager.compare(password, user.getPassword())
         
-        // if (!correctPassword){
-        //     throw new Error("Senha incorreto")
-        // }
+        if (!correctPassword){
+            throw new Error("Senha incorreto")
+        }
 
         const tokenAuth: ItokenAuth = {
             id: user.getId(),

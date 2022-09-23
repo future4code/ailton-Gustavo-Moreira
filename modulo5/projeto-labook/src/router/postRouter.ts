@@ -2,7 +2,6 @@ import { Router } from 'express'
 import { PostBusiness } from '../business/PostBusiness'
 import { PostController } from '../controller/PostController'
 import { PostDatabase } from '../database/PostDatabase'
-import { UserDatabase } from '../database/UserDatabase'
 import { Authenticator } from '../services/Authenticator'
 import { IdGenerator } from '../services/IdGenerator'
 
@@ -17,4 +16,5 @@ const postController = new PostController(
 )
 
 postRouter.post("/create", postController.create)
-postRouter.get("/all", postController.getAll)
+postRouter.get("/all", postController.getPosts)
+postRouter.delete("/:id", postController.delete)

@@ -1,8 +1,9 @@
 import { PostDatabase } from "../database/PostDatabase"
-import { inputPostCreate, Post } from "../models/Post"
+import { IGetPostsInputDTO, IGetPostsOutputDTO, inputDeleteDTO, inputPostCreate, IPostLikeDB, Post, postsOutput } from "../models/Post"
 import { Authenticator } from "../services/Authenticator"
 import { IdGenerator } from "../services/IdGenerator"
 import { UserDatabase } from "../database/UserDatabase"
+import { USER_ROLES } from "../models/User"
 
 export class PostBusiness {
     constructor(
@@ -37,16 +38,64 @@ export class PostBusiness {
 
     }
 
-    public getAll = async (tokens: string) =>{
-        const token = tokens
+    public getPosts = async (input: IGetPostsInputDTO) => {
+        const { token } = input
 
-        if (!token){
-            throw new Error("Não autorizado")
+        const payload = this.authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Não autenticado")
         }
-        
-        const allPosts = await this.postDatabase.getAll()
-        return allPosts
+
+        const postsDB = await this.postDatabase.getPosts()
+
+        const posts = postsDB.map(postDB => {
+            return new Post(
+                postDB.id,
+                postDB.content,
+                postDB.user_id
+            )
+        })
+
+        for (let post of posts) {
+            const postId = post.getId()
+            const likes = await this.postDatabase.getLikes(postId)
+            post.setLikes(likes)
+        }
+
+        const response: IGetPostsOutputDTO = {
+            posts
+        }
+
+        return response
     }
+
+    public delete = async (input: inputDeleteDTO) =>{
+        const {token, id} = input
+
+        //validar token
+        const validToken = this.authenticator.getTokenPayload(token)
+        if(!validToken){
+            throw new Error("Token inválido")
+        }
+
+        //achar o id do Post
+        const postDB = await this.postDatabase.findById(id)
+        if (!postDB){
+            throw new Error("Post não existe")
+        }
+
+        if(validToken.role === USER_ROLES.NORMAL && postDB.user_id !== validToken.id){
+            throw new Error("Voce nao tem permissao")
+        }
+
+        await this.postDatabase.delete(id)
+
+        const response = {message: "Post deletado"}
+        return response
+    }
+
+    
     
 
 }

@@ -1,17 +1,37 @@
-import { IPostDB, Post } from "../models/Post"
+import { IPostDB, IPostLikeDB, Post } from "../models/Post"
 import { BaseDatabase } from "./BaseDatabase"
 
 export class PostDatabase extends BaseDatabase {
     public static TABLE_POSTS = "Labook_Posts"
     public static TABLE_LIKES = "Labook_Likes"
 
-    public create = async (post: Post) =>{
+    public toPostDBModel = (post: Post) => {
         const postDB: IPostDB = {
             id: post.getId(),
             content: post.getContent(),
             user_id: post.getUserId()
         }
-        await BaseDatabase.connection(PostDatabase.TABLE_POSTS).insert(postDB)
+
+        return postDB
+    }
+
+    public postModelLike = async (post: Post)=>{
+        const postLikeDB: IPostLikeDB = {
+            id: post.getId(),
+            content: post.getContent(),
+            user_id: post.getUserId(),
+            likes: post.getLikes()
+        }
+
+        return postLikeDB
+    }
+
+    public create = async (post: Post) =>{
+        const postDB = this.toPostDBModel(post)
+
+        await BaseDatabase
+            .connection(PostDatabase.TABLE_POSTS)
+            .insert(postDB)
     }
 
     public getByID = async (id:string) =>{
@@ -23,14 +43,45 @@ export class PostDatabase extends BaseDatabase {
         return postDB[0]
     }
 
-    public getAll = async () =>{
-        const postDB = await BaseDatabase.connection.raw(`
-        SELECT Labook_Posts.id, Labook_Posts.content, Labook_Posts.user_id, count(Labook_Likes.user_id) as total_like
-        FROM Labook_Likes
-        inner join Labook_Posts on Labook_Posts.id = Labook_Likes.post_id
-        group by  Labook_Likes.post_id;`)
+    public getPosts = async () => {
+        const postsDB: IPostDB[] = await BaseDatabase
+            .connection(PostDatabase.TABLE_POSTS)
+            .select()
 
-        return postDB
+        return postsDB
     }
+
+    public getLikes = async (postId: string) => {
+        const result: any = await BaseDatabase
+            .connection(PostDatabase.TABLE_LIKES)
+            .select()
+            .count("id AS likes")
+            .where({ post_id: postId })
+
+        return result[0].likes as number
+    }
+
+    public findById = async (postId: string) =>{
+        const postsDB: IPostDB[] = await BaseDatabase
+            .connection(PostDatabase.TABLE_POSTS)
+            .select()
+            .where({ id: postId })
+
+        return postsDB[0]
+    }
+
+    public delete = async (id:string) => {
+        await BaseDatabase
+        .connection(PostDatabase.TABLE_POSTS)
+        .delete()
+        .where({id})
+
+        const response = {
+            message: "Post deletado"
+        }
+
+        return response
+    }
+
 
 }

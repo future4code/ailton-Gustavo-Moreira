@@ -4,6 +4,26 @@ export interface IPostDB {
     user_id: string
 }
 
+export interface IPostLikeDB {
+    id: string,
+    content: string,
+    user_id: string
+    likes: number
+}
+
+export interface ICreatePostInputDTO {
+    token: string,
+    content: string
+}
+
+export interface IGetPostsInputDTO {
+    token: string
+}
+
+export interface IGetPostsOutputDTO {
+    posts: Post[]
+}
+
 export interface ILikeDB {
     id: string,
     post_id: string,
@@ -12,6 +32,15 @@ export interface ILikeDB {
 
 export interface inputPostCreate {
     content: string
+}
+
+export interface inputDeleteDTO{
+    token: string,
+    id: string
+}
+
+export interface postsOutput {
+    posts: Post[]
 }
 
 export class Post {
