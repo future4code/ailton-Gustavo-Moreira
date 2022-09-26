@@ -18,3 +18,5 @@ const postController = new PostController(
 postRouter.post("/create", postController.create)
 postRouter.get("/all", postController.getPosts)
 postRouter.delete("/:id", postController.delete)
+postRouter.post("/like/:id", postController.addLike)
+postRouter.delete("/deslike/:id", postController.desLike)

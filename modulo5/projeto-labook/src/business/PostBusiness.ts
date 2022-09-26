@@ -1,5 +1,5 @@
 import { PostDatabase } from "../database/PostDatabase"
-import { IGetPostsInputDTO, IGetPostsOutputDTO, inputDeleteDTO, inputPostCreate, IPostLikeDB, Post, postsOutput } from "../models/Post"
+import { IGetPostsInputDTO, IGetPostsOutputDTO, ILikeDB, inputDeleteDTO, inputLikeDTO, inputPostCreate, IPostLikeDB, Post, postsOutput } from "../models/Post"
 import { Authenticator } from "../services/Authenticator"
 import { IdGenerator } from "../services/IdGenerator"
 import { UserDatabase } from "../database/UserDatabase"
@@ -95,7 +95,66 @@ export class PostBusiness {
         return response
     }
 
-    
+    public addLike = async (input: inputLikeDTO) =>{
+        const {token, postId} = input
+
+        //validar token
+        const validToken = this.authenticator.getTokenPayload(token)
+        if(!validToken){
+            throw new Error("Token inválido")
+        }
+
+        //achar o id do Post
+        const postDB = await this.postDatabase.findById(postId)
+        if (!postDB){
+            throw new Error("Post não existe")
+        }
+
+        //verificar se já deu like
+        const alreadyLike = await this.postDatabase.findLike(validToken.id, postId)
+        if (alreadyLike){
+            throw new Error("Voce já curtiu esse post")
+        }
+
+        const like:ILikeDB = {
+            id: this.idGenerator.generate(),
+            post_id: postId,
+            user_id: validToken.id
+        }
+
+        await this.postDatabase.addLike(like)
+
+        const response = {message: "Curtido!"}
+        return response
+    }
+
+    public desLike = async (input: inputLikeDTO) =>{
+        const {token, postId} = input
+
+        //validar token
+        const validToken = this.authenticator.getTokenPayload(token)
+        if(!validToken){
+            throw new Error("Token inválido")
+        }
+
+        //achar o id do Post
+        const postDB = await this.postDatabase.findById(postId)
+        if (!postDB){
+            throw new Error("Post não existe")
+        }
+
+        //verificar se já deu like
+        const alreadyLike = await this.postDatabase.findLike(validToken.id, postId)
+        if (!alreadyLike){
+            throw new Error("Voce não curtiu esse post")
+        }
+
+
+        await this.postDatabase.desLike(validToken.id, postId)
+
+        const response = {message: "Descurtido!"}
+        return response
+    }
     
 
 }

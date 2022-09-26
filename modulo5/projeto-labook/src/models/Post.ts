@@ -39,6 +39,11 @@ export interface inputDeleteDTO{
     id: string
 }
 
+export interface inputLikeDTO{
+    token: string,
+    postId: string
+}
+
 export interface postsOutput {
     posts: Post[]
 }
