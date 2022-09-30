@@ -10,6 +10,17 @@ export interface ITicketDB {
     user_id: string
 }
 
+export interface IcreateShowDTO{
+    token: string,
+    band: string,
+    dateDB: Date
+}
+
+export interface IcreateShowOutputDTO {
+    message: string,
+    show: Show
+}
+
 export class Show {
     constructor(
         private id: string,

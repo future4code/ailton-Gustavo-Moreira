@@ -17,6 +17,11 @@ export interface IinputSignupDTO {
     password: string
 }
 
+export interface IinputLoginDTO{
+    email: string,
+    password: string
+}
+
 export interface IpayloadDTO {
     id: string,
     role: USER_ROLES
