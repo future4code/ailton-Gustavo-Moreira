@@ -1,8 +1,8 @@
 import * as path from "path";
-import { FileSystem } from "../../services/FileSystem";
+import { FileSystemMock } from "./FileSystemMock";
 
 //Chamando o serviço para leitura do arquivo JSON
-const lendoJSON = new FileSystem().readFileJson(path.resolve(__dirname, "../../../src/products.json"));
+const lendoJSON = new FileSystemMock().readFileJson(path.resolve(__dirname, "../../../src/products.json"));
 
 export const productJson = lendoJSON.products.map((product: any) =>{
     return {id:product.id, name:product.name}
@@ -13,7 +13,7 @@ const tagsJson = lendoJSON.products.flatMap((product: any) =>{
 })
 const tagsJsonSemRepetir = [... new Set(tagsJson)]
 
-//transforma em objeto
+// //transforma em objeto
 export let tags: any = [];
 for (let i = 0; i < tagsJsonSemRepetir.length; i++) {
   tags.push({tags: tagsJsonSemRepetir[i] });
@@ -42,7 +42,3 @@ while (contador < IdAndTags.length) {
 
   contador++;
 }
-
-
-
-

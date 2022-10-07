@@ -1,8 +1,8 @@
-import { BaseDatabase } from "../BaseDatabase"
-import { ProductDatabase } from "../ProductDatabase"
-import {productJson, tags, products_tags} from "../migrations/data"
+import { BaseDatabase } from "../../src/database/BaseDatabase"
+import { ProductDatabaseMock } from "./ProductDatabaseMock"
+import {productJson, tags, products_tags} from "./dataMock"
 
-export class Migrations extends BaseDatabase {
+export class MigrationsMock extends BaseDatabase {
     execute = async () => {
         try {
             console.log("Creating tables...")
@@ -28,24 +28,24 @@ export class Migrations extends BaseDatabase {
 
     createTables = async () => {
         await BaseDatabase.connection.raw(`
-        DROP TABLE IF EXISTS ${ProductDatabase.TABLE_ALL};
-        DROP TABLE IF EXISTS ${ProductDatabase.TABLE_PRODUCTS};
-        DROP TABLE IF EXISTS ${ProductDatabase.TABLE_TAGS};
+        DROP TABLE IF EXISTS ${ProductDatabaseMock.TABLE_ALL};
+        DROP TABLE IF EXISTS ${ProductDatabaseMock.TABLE_PRODUCTS};
+        DROP TABLE IF EXISTS ${ProductDatabaseMock.TABLE_TAGS};
         
-        CREATE TABLE IF NOT EXISTS ${ProductDatabase.TABLE_PRODUCTS}(
+        CREATE TABLE IF NOT EXISTS ${ProductDatabaseMock.TABLE_PRODUCTS}(
             id INT NOT NULL PRIMARY KEY,
             name VARCHAR(255) NOT NULL
         );
 
-        CREATE TABLE IF NOT EXISTS ${ProductDatabase.TABLE_TAGS}(
+        CREATE TABLE IF NOT EXISTS ${ProductDatabaseMock.TABLE_TAGS}(
             tags VARCHAR(255) NOT NULL PRIMARY KEY
         );
 
-        CREATE TABLE IF NOT EXISTS ${ProductDatabase.TABLE_ALL}(
+        CREATE TABLE IF NOT EXISTS ${ProductDatabaseMock.TABLE_ALL}(
             id int,
 	        tags VARCHAR(255),
-            FOREIGN KEY (id) REFERENCES ${ProductDatabase.TABLE_PRODUCTS}(id),
-	        FOREIGN KEY (tags) REFERENCES ${ProductDatabase.TABLE_TAGS}(tags)
+            FOREIGN KEY (id) REFERENCES ${ProductDatabaseMock.TABLE_PRODUCTS}(id),
+	        FOREIGN KEY (tags) REFERENCES ${ProductDatabaseMock.TABLE_TAGS}(tags)
         );
         `)
         
@@ -53,15 +53,15 @@ export class Migrations extends BaseDatabase {
 
     insertData = async () => {
         await BaseDatabase
-            .connection(ProductDatabase.TABLE_PRODUCTS)
+            .connection(ProductDatabaseMock.TABLE_PRODUCTS)
             .insert(productJson)
 
         await BaseDatabase
-            .connection(ProductDatabase.TABLE_TAGS)
+            .connection(ProductDatabaseMock.TABLE_TAGS)
             .insert(tags)
 
         await BaseDatabase
-            .connection(ProductDatabase.TABLE_ALL)
+            .connection(ProductDatabaseMock.TABLE_ALL)
             .insert(products_tags)
     }
 }

@@ -1,81 +1,105 @@
+import { Migrations } from "../database/migrations/Migrations"
 import { ProductDatabase } from "../database/ProductDatabase"
-import { AuthenticationError } from "../errors/AuthenticationError"
-import { AuthorizationError } from "../errors/AuthorizationError"
-import { ConflictError } from "../errors/ConflictError"
-import { NotFoundError } from "../errors/NotFoundError"
-import { ParamsError } from "../errors/ParamsError"
-import { ICreateProductDTO, Product } from "../models/Product"
-import { USER_ROLES } from "../models/User"
-import { Authenticator } from "../services/Authenticator"
-import { IdGenerator } from "../services/IdGenerator"
+import { IInputIdDB, IInputNameDB, IInputTagDB, Product } from "../models/Product"
 
 export class ProductBusiness {
+    static getPosts(input: IInputIdDB) {
+        throw new Error("Method not implemented.")
+    }
     constructor(
         private productDatabase: ProductDatabase,
-        // private idGenerator: IdGenerator,
-        // private authenticator: Authenticator
+        private migrations: Migrations
     ) {}
-
     
-    public getPosts = async () => {
+    public getProduct = async () => {
         
         const productDB = await this.productDatabase.getProduct()
 
-        const products = productDB.map((product)=>{
-            return new Product (
-                product.produto_id,
-                product.nome,
-                product.tags
-            )
-        })
-        
-        
-        for (let product of products){
-            const productId: any = product.getId()
-            const tagsDB = await this.productDatabase.getTags(productId)
-            const mapTags = tagsDB.map((tags) =>{
-                return tags.tags_tag
-            })
-            
-            product.setTags(mapTags)
-        }
-
-        const mapSemRepetir = [...new Set(products)]
-
-
-        console.log(products)
-        const response = {Products:mapSemRepetir}
+        let productsOnly: Product[] = []
+        productDB.forEach((product: Product) => {
+            const duplicate = productsOnly.findIndex((item: Product)=>{
+                return product.getId() === item.getId()
+            }) > -1
+            if(!duplicate){
+                productsOnly.push(product)
+            }
+        });
+        for (let product of productsOnly){
+                const productId: any = product.getId()
+                const tagsDB = await this.productDatabase.getTags(productId)
+                const mapTags = tagsDB.map((tags) =>{
+                    return tags.tags
+                })                
+                product.setTags(mapTags)
+            }            
+        const response = {Products:productsOnly}
         return response
     }
 
-    // public deletePost = async (input: IDeletePostInputDTO) => {
-    //     const { token, postId } = input
+    public getProductById = async (input: IInputIdDB) => {       
+        const {id} = input
+        const productDB = await this.productDatabase.getProductById(id)
+        const product = new Product(
+            id,
+            productDB as unknown as string
+        )          
+        for (let tags of productDB){
+                const tagsDB = await this.productDatabase.getTags(id)
+                const mapTags = tagsDB.map((tags) =>{
+                    return tags.tags
+                })        
+                product.setTags(mapTags)
+            }
+            const response = {Products:product}
+        return response
+    }
 
-    //     const payload = this.authenticator.getTokenPayload(token)
+    public getProductByName = async (input: IInputNameDB) => {
+        
+        const {name} = input
+        const nome = name.toUpperCase()
+        const productDB = await this.productDatabase.getProductByName(nome)
+    
+        let productsOnly: Product[] = []
+        productDB.forEach((product: Product) => {
+            const duplicate = productsOnly.findIndex((item: Product)=>{
+                return product.getId() === item.getId()
+            }) > -1
+            if(!duplicate){
+                productsOnly.push(product)
+            }
+        });
+        for (let product of productsOnly){
+                const productId: any = product.getId()
+                const tagsDB = await this.productDatabase.getTags(productId)
+                const mapTags = tagsDB.map((tags) =>{
+                    return tags.tags
+                })                
+                product.setTags(mapTags)
+            }
+        const response = {Products:productsOnly}
+        return response
+    }
 
-    //     if (!payload) {
-    //         throw new AuthenticationError()
-    //     }
+    public getProductByTag = async(input:IInputTagDB) =>{
+        const {tags} = input
+        const productDB = await this.productDatabase.getProductByTag(tags)
+        for (let product of productDB){
+            const productId: any = product.getId()
+            const tagsDB = await this.productDatabase.getTags(productId)
+            const mapTags = tagsDB.map((tags) =>{
+                return tags.tags
+            })                
+            product.setTags(mapTags)
+        }
+        const response = {Products:productDB}
+        return response
+    }
 
-    //     const postDB = await this.postDatabase.findPostById(postId)
-
-    //     if (!postDB) {
-    //         throw new NotFoundError("Post não encontrado")
-    //     }
-
-    //     if (payload.role === USER_ROLES.NORMAL) {
-    //         if (postDB.user_id !== payload.id) {
-    //             throw new AuthorizationError()
-    //         }
-    //     }
-
-    //     await this.postDatabase.deletePost(postId)
-
-    //     const response: IDeletePostOutputDTO = {
-    //         message: "Post deletado com sucesso"
-    //     }
-
-    //     return response
-    // }
+    //Ativar o Migrations
+    public populate = async () =>{
+        const migrations = new Migrations()
+        migrations.execute()
+    }
 
 }

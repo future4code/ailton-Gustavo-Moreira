@@ -1,20 +1,23 @@
 import { Router } from 'express'
 import { ProductBusiness } from '../business/ProductBusiness'
 import { ProductController } from '../controller/ProductController'
+import { Migrations } from '../database/migrations/Migrations'
 import { ProductDatabase } from '../database/ProductDatabase'
-import { Authenticator } from '../services/Authenticator'
-import { IdGenerator } from '../services/IdGenerator'
+
 
 export const productRouter = Router()
 
 const productController = new ProductController(
     new ProductBusiness(
         new ProductDatabase(),
-        // new IdGenerator(),
-        // new Authenticator()
+        new Migrations()
     )
 )
 
-// productRouter.post("/create", productController.createProduct)
+productRouter.post("/execute", productController.populate)
+
+//Gets
 productRouter.get("/all", productController.getProduct)
-// productRouter.delete("/:id", productController.deletePost)
+productRouter.get("/search", productController.getProductByName)
+productRouter.get("/forTags", productController.getProductByTag)
+productRouter.get("/:id", productController.getProductById)

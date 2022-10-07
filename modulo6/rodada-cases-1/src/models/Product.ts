@@ -1,7 +1,17 @@
 export interface IFullProductDB {
-    produto_id: string,
-    nome: string,
-    tags: string []
+    product: Product[] 
+}
+
+export interface IInputIdDB {
+   id: number
+}
+
+export interface IInputNameDB {
+    name: string
+}
+
+export interface IInputTagDB {
+    tags: string
 }
 
 export interface IProductDB {
@@ -9,28 +19,28 @@ export interface IProductDB {
     name: string,
 }
 
+
 export interface ITagsDB{
     tags: string []
 }
 
 export interface IInputProductDTO{
-    id: string,
+    id: number,
     name: string,
     tags: string []
 }
 
 export interface ICreateProductDTO{
-    id: string,
+    id: number,
     name: string,
     tags: string []
 }
 
-
 export class Product {
     constructor(
-        private id: string,
+        private id: number,
         private name: string,
-        private tags: string [],
+        private tags?: string [],
     ) {}
 
     public getId = () => {
