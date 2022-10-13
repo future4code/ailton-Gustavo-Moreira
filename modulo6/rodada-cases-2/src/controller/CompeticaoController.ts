@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { CompeticaoBusiness } from "../business/CompeticaoBusiness";
-import { BaseError } from "../errors/BaseError";
 import { criarInputDTO, criarInputFinalizarDTO } from "../models/Competicao";
 
 export class CompeticaoController {
@@ -17,11 +16,8 @@ export class CompeticaoController {
 
             const response = await this.competicaoBusiness.criar(input)
             res.status(201).send(response)
-        } catch (error: unknown) {
-            if (error instanceof BaseError) {
-                return res.status(error.statusCode).send({ message: error.message })
-            }
-            res.status(500).send({ message: "Erro inesperado ao criar a competição" })
+        } catch (error: any) {
+            res.status(500).send({ message: error.message })
         }
     }
 
@@ -33,11 +29,8 @@ export class CompeticaoController {
             
             const response = await this.competicaoBusiness.finalizar(input)
             res.status(200).send(response)
-        } catch (error: unknown) {
-            if (error instanceof BaseError) {
-                return res.status(error.statusCode).send({ message: error.message })
-            }
-            res.status(500).send({ message: "Erro inesperado ao criar a competição" })
+        } catch (error: any) {
+            res.status(500).send({ message: error.message })
         }
     }
 

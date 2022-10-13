@@ -7,7 +7,8 @@ export class CompeticaoBusiness {
         private competicaoDatabase: CompeticaoDatabase
     ) {}
 
-    public criar = async (input: criarInputDTO): Promise<criarRespostaSaidaDTO> => {
+    public criar = async (input: criarInputDTO) => {
+        // : Promise<criarRespostaSaidaDTO>
         const { nome, unidade } = input
 
         if (typeof nome !== "string") {
@@ -23,6 +24,7 @@ export class CompeticaoBusiness {
             unidade,
             STATUS_ROLES.INICIADA
         )
+
         await this.competicaoDatabase.criar(competicao)
 
         const response: criarRespostaSaidaDTO = {

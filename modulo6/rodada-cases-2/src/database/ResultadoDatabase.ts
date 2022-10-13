@@ -1,3 +1,4 @@
+import { competicaoDB } from "../models/Competicao"
 import { Resultado, resultadoDB } from "../models/Resultado"
 import { BaseDatabase } from "./BaseDatabase"
 
@@ -23,13 +24,41 @@ export class ResultadoDatabase extends BaseDatabase {
             .insert(resultadoDB)
     }
 
-    public ranking = async (nome: string): Promise<resultadoDB[] | undefined> =>{
+    public ranking = async (nome: string): Promise<resultadoDB | undefined> =>{
+        const result: resultadoDB[] = await BaseDatabase
+        .connection.raw(`select atleta, (select max(valor)) as valor, unidade 
+        from CASE_Olimpiadas_Resultado
+        where nome = "${nome}"
+        group by atleta, unidade
+        order by valor ASC;`)
+
+        return result[0]
+    }
+
+    public buscarCompeticao = async (nome:string): Promise<competicaoDB[] | undefined> =>{
+        const result:competicaoDB[] = await BaseDatabase
+        .connection("CASE_Olimpiadas_Competicao")
+        .select()
+        .where({nome})
+
+        return result
+    }
+
+    public buscarAtletaPorCompeticao = async (atleta: string, nome: string): Promise<resultadoDB[] | undefined> =>{
         const result: resultadoDB[] = await BaseDatabase
         .connection(ResultadoDatabase.TABELA_RESULTADO)
-        .select("atleta", "valor", "unidade")
-        .where({nome})
-        .orderBy("valor", "asc")
+        .select()
+        .where({atleta, nome})
 
-        return result 
+        return result
+    }
+
+    public buscarResultado = async (nome:string): Promise<resultadoDB[] | undefined> =>{
+        const result: resultadoDB[] = await BaseDatabase
+        .connection(ResultadoDatabase.TABELA_RESULTADO)
+        .select()
+        .where({nome})
+
+        return result
     }
 }

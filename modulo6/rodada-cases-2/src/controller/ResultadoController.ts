@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { ResultadoBusiness } from "../business/ResultadoBusiness";
-import { BaseError } from "../errors/BaseError";
 import { criarInputResultadoDTO, rankingSaidaDTO } from "../models/Resultado";
 
 export class ResultadoController {
@@ -19,12 +18,8 @@ export class ResultadoController {
 
             const response = await this.resultadoBusiness.criar(input)
             res.status(201).send(response)
-        } catch (error: unknown) {
-            if (error instanceof BaseError) {
-                return res.status(error.statusCode).send({ message: error.message })
-            }
-
-            res.status(500).send({ message: "Erro inesperado ao passar o resultado" })
+        } catch (error: any) {
+            res.status(500).send({ message: error.message })
         }
     }
 
@@ -35,11 +30,9 @@ export class ResultadoController {
             }
             const response = await this.resultadoBusiness.ranking(input)
             res.status(200).send(response)
-        } catch (error: unknown) {
-            if (error instanceof BaseError) {
-                return res.status(error.statusCode).send({ message: error.message })
-            }   
-            res.status(500).send({ message: "Erro inesperado ao tentar pegar o ranking" })         
+        } catch (error: any) {
+            
+            res.status(500).send({ message: error.message })         
         }
     }
 

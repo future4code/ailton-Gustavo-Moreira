@@ -1,5 +1,6 @@
 import { ResultadoDatabase } from "../database/ResultadoDatabase"
 import { RequestError } from "../errors/RequestError"
+import { STATUS_ROLES } from "../models/Competicao"
 import { criarInputResultadoDTO, criarRespostaSaidaDTO, rankingSaidaDTO, Resultado } from "../models/Resultado"
 
 export class ResultadoBusiness {
@@ -9,19 +10,50 @@ export class ResultadoBusiness {
 
     public criar = async (input: criarInputResultadoDTO) => {
         const { nome, atleta, valor, unidade } = input
+        //--------------------------------------------------------------------------------
+        //Campos Obrigatórios
+        if (nome.length < 1) {
+            throw new RequestError("Campo Obrigatório")
+        }
+        
+        if (atleta.length < 1) {
+            throw new RequestError("Campo Obrigatório")
+        }
+        if (valor.length < 1) {
+            throw new RequestError("Campo Obrigatório")
+        }
+        if (unidade.length < 1) {
+            throw new RequestError("Campo Obrigatório")
+        }
+        //--------------------------------------------------------------------------------
+        //Verificar se a competição está encerrada
+        const buscaCompeticao = await this.resultadoDatabase.buscarCompeticao(nome)
+        const mapCompeticao = buscaCompeticao.map((competicao) =>{
+            return competicao.status
+        })
+        const verificaCompeticao = mapCompeticao.toString()
+        if(verificaCompeticao === "encerrada"){
+            throw new Error("Competição já está encerrada")
+        }
+        //--------------------------------------------------------------------------------
+        //Verificar se já passou o Resultado do mesmo Atleta
+        const buscaResultado = await this.resultadoDatabase.buscarResultado(nome)
+        const mapResultado = buscaResultado.map((resultado) =>{
+            return resultado.atleta
+        })
+        const nomeNaArray = mapResultado.includes(atleta)    
+        if(nomeNaArray  &&  !nome.includes("Dardos")){
+            throw new Error("Atleta já passou o resultado")
+        }
+        //--------------------------------------------------------------------------------
+        //Verificar se o Atleta já jogou 3 vezes
+        const buscaResultadoAtleta = await this.resultadoDatabase.buscarAtletaPorCompeticao(atleta, nome)
 
-        if (typeof nome !== "string") {
-            throw new RequestError("Parâmetro 'name' inválido: deve ser uma string")
+        if(buscaResultadoAtleta.length === 3){
+            throw new Error("Atleta já passou os 3 resultados")
         }
-        if (typeof atleta !== "string") {
-            throw new RequestError("Parâmetro 'atleta' inválido: deve ser uma string")
-        }
-        if (typeof valor !== "string") {
-            throw new RequestError("Parâmetro 'valor' inválido: deve ser uma string")
-        }
-        if (typeof unidade !== "string") {
-            throw new RequestError("Parâmetro 'unidade' inválido: deve ser uma string")
-        }
+        //--------------------------------------------------------------------------------
+        
 
         const resultado = new Resultado(
             nome,
@@ -29,6 +61,7 @@ export class ResultadoBusiness {
             valor,
             unidade
         )
+
         await this.resultadoDatabase.criar(resultado)
 
         const response: criarRespostaSaidaDTO = {
@@ -41,7 +74,8 @@ export class ResultadoBusiness {
         const {nome} = input
 
         const rank = await this.resultadoDatabase.ranking(nome)
-        const response ={Competicao: "Corrida de 100m", rank}
+        console.log(rank)
+        const response ={Competicao: nome, rank}
         return response
 
     }
