@@ -7,8 +7,8 @@ export class CompeticaoBusiness {
         private competicaoDatabase: CompeticaoDatabase
     ) {}
 
-    public criar = async (input: criarInputDTO) => {
-        // : Promise<criarRespostaSaidaDTO>
+    public criar = async (input: criarInputDTO): Promise<criarRespostaSaidaDTO> => {
+        
         const { nome, unidade } = input
 
         if (typeof nome !== "string") {
@@ -41,7 +41,11 @@ export class CompeticaoBusiness {
         await this.competicaoDatabase.finalizar(nome)
         const competicao = await this.competicaoDatabase.buscarPeloNome(nome)
         
-        console.log(competicao)
+        const response: criarRespostaSaidaDTO = {
+            message: "Competição encerrada"
+        }
+
+        return response
     }
 
 }

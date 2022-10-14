@@ -18,7 +18,7 @@ export interface rankingSaidaDTO{
 }
 
 export interface resultadoDB{
-    nome: string,
+    nome?: string,
     atleta: string,
     valor: string,
     unidade: UNIDADE_ROLES

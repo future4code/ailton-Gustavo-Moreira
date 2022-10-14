@@ -48,7 +48,6 @@ export class ResultadoBusiness {
         //--------------------------------------------------------------------------------
         //Verificar se o Atleta já jogou 3 vezes
         const buscaResultadoAtleta = await this.resultadoDatabase.buscarAtletaPorCompeticao(atleta, nome)
-
         if(buscaResultadoAtleta.length === 3){
             throw new Error("Atleta já passou os 3 resultados")
         }
