@@ -47,13 +47,12 @@ export class ProductDatabase extends BaseDatabase {
         .connection(ProductDatabase.TABLE_PRODUCTS)
         .select()
         .whereLike("name", `%${name}%`)
-        
         const products = productDB.map((product: any)=>{
             return  new Product (
                 product.id,
                 product.name
             )                
-        })
+        })        
         return products
     }
 

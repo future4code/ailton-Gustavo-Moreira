@@ -7,7 +7,7 @@ describe("Testando criar da UserBusiness", () => {
         new CompeticaoDatabaseMock()
     )
 
-    test("Caso de sucesso", async () => {
+    test("Deve criar Competição", async () => {
         const input: criarInputDTO = {
             nome: "Dardos Semi-Final",
             unidade: UNIDADE_ROLES.METROS

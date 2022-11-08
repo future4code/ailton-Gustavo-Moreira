@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "data": "ts-node-dev ./src/database/migrations/data.ts",
-    "build": "tsc",
     "dev": "ts-node-dev ./src/index.ts",
     "migrations": "tsc && node ./build/src/database/migrations/Migrations.js",
     "test": "jest"

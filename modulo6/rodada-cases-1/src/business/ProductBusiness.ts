@@ -15,6 +15,7 @@ export class ProductBusiness {
         
         const productDB = await this.productDatabase.getProduct()
 
+        //função para nao repetir o nome do produto
         let productsOnly: Product[] = []
         productDB.forEach((product: Product) => {
             const duplicate = productsOnly.findIndex((item: Product)=>{
@@ -24,6 +25,7 @@ export class ProductBusiness {
                 productsOnly.push(product)
             }
         });
+        //colocando as tags nos produtos
         for (let product of productsOnly){
                 const productId: any = product.getId()
                 const tagsDB = await this.productDatabase.getTags(productId)
@@ -32,7 +34,7 @@ export class ProductBusiness {
                 })                
                 product.setTags(mapTags)
             }            
-        const response = {Products:productsOnly}
+        const response = {message:"Todos os Produtos Cadastrados", Products:productsOnly}
         return response
     }
 
@@ -42,7 +44,8 @@ export class ProductBusiness {
         const product = new Product(
             id,
             productDB as unknown as string
-        )          
+        ) 
+         //colocando as tags nos produtos         
         for (let tags of productDB){
                 const tagsDB = await this.productDatabase.getTags(id)
                 const mapTags = tagsDB.map((tags) =>{
@@ -50,7 +53,7 @@ export class ProductBusiness {
                 })        
                 product.setTags(mapTags)
             }
-            const response = {Products:product}
+            const response = {message:"Produtos Filtrado pelo Id", Products:product}
         return response
     }
 
@@ -59,8 +62,9 @@ export class ProductBusiness {
         const {name} = input
         const nome = name.toUpperCase()
         const productDB = await this.productDatabase.getProductByName(nome)
-    
-        let productsOnly: Product[] = []
+        
+        //função para nao repetir o nome do produto
+        let productsOnly: Product[] = []        
         productDB.forEach((product: Product) => {
             const duplicate = productsOnly.findIndex((item: Product)=>{
                 return product.getId() === item.getId()
@@ -69,21 +73,24 @@ export class ProductBusiness {
                 productsOnly.push(product)
             }
         });
+        //colocando as tags nos produtos
         for (let product of productsOnly){
-                const productId: any = product.getId()
+                const productId: any = product.getId()        
                 const tagsDB = await this.productDatabase.getTags(productId)
                 const mapTags = tagsDB.map((tags) =>{
                     return tags.tags
                 })                
                 product.setTags(mapTags)
             }
-        const response = {Products:productsOnly}
+        const response = {message:"Produtos Filtrado por Nome", Product:productsOnly}
+
         return response
     }
 
     public getProductByTag = async(input:IInputTagDB) =>{
         const {tags} = input
         const productDB = await this.productDatabase.getProductByTag(tags)
+         //colocando as tags nos produtos
         for (let product of productDB){
             const productId: any = product.getId()
             const tagsDB = await this.productDatabase.getTags(productId)
@@ -92,11 +99,11 @@ export class ProductBusiness {
             })                
             product.setTags(mapTags)
         }
-        const response = {Products:productDB}
+        const response = {message:"Produtos Filtrado por Tag", Products:productDB}
         return response
     }
 
-    //Ativar o Migrations
+    //Ativar o Migrations automaticamente no postman
     public populate = async () =>{
         const migrations = new Migrations()
         migrations.execute()
