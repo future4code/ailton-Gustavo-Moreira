@@ -1,4 +1,3 @@
-import react from "react"
 import { useState } from "react"
 import {Container, Sidebar, Main, Header_Sidebar, Main_Sidebar, Footer_Sidebar, Select, Logo, Footer_Main, ButtonNumber} from "./styled"
 import {useRequestData} from "../../hooks/useRequestData"
@@ -7,13 +6,11 @@ import { Color } from "../../constantes/colors"
 import clover from "../../assets/clover.svg"
 import Moment from 'moment';
 
-
 const HomePage = () => {
     const [ data ] = useRequestData([],`${BASE_URL}/loterias`);
     const [concursos] = useRequestData([], `${BASE_URL}/loterias-concursos`);
     const [loterias, setLoterias] = useState(0);
     const [valor , setValor ] = useState(2359);
-
     
 //Controlando o valor do select
   const handleChange = (event) => {
@@ -38,8 +35,7 @@ const HomePage = () => {
         setValor(440)
         break
       default:
-        setValor(2359);
-        
+        setValor(2359);        
     }
   };
 
@@ -90,12 +86,8 @@ console.log(resultadoConcurso)
               );
             })}</div>
                     <Footer_Main>Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA</Footer_Main>
-                </Main>
-          
+                </Main>          
         </Container>
-
     )
 }
-
-
 export default HomePage
