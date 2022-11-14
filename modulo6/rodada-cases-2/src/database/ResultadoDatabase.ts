@@ -24,7 +24,7 @@ export class ResultadoDatabase extends BaseDatabase {
             .insert(resultadoDB)
     }
 
-    public ranking = async (nome: string): Promise<resultadoDB | undefined> =>{
+    public ranking = async (nome: string): Promise<resultadoDB[] | undefined> =>{
         const result: resultadoDB[] = await BaseDatabase
         .connection.raw(`select atleta, (select max(valor)) as valor, unidade 
         from CASE_Olimpiadas_Resultado
@@ -32,7 +32,7 @@ export class ResultadoDatabase extends BaseDatabase {
         group by atleta, unidade
         order by valor ASC;`)
 
-        return result[0]
+        return result
     }
 
     public buscarCompeticao = async (nome:string): Promise<competicaoDB[] | undefined> =>{
@@ -49,7 +49,7 @@ export class ResultadoDatabase extends BaseDatabase {
         .connection(ResultadoDatabase.TABELA_RESULTADO)
         .select()
         .where({atleta, nome})
-
+        
         return result
     }
 

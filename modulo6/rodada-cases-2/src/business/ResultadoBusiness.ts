@@ -28,27 +28,27 @@ export class ResultadoBusiness {
         //--------------------------------------------------------------------------------
         //Verificar se a competição está encerrada
         const buscaCompeticao = await this.resultadoDatabase.buscarCompeticao(nome)
-        const mapCompeticao = buscaCompeticao.map((competicao) =>{
+        const mapCompeticao = buscaCompeticao?.map((competicao) =>{
             return competicao.status
         })
-        const verificaCompeticao = mapCompeticao.toString()
+        const verificaCompeticao = mapCompeticao?.toString()
         if(verificaCompeticao === "encerrada"){
             throw new Error("Competição já está encerrada")
         }
         //--------------------------------------------------------------------------------
         //Verificar se já passou o Resultado do mesmo Atleta
         const buscaResultado = await this.resultadoDatabase.buscarResultado(nome)
-        const mapResultado = buscaResultado.map((resultado) =>{
+        const mapResultado = buscaResultado?.map((resultado) =>{
             return resultado.atleta
         })
-        const nomeNaArray = mapResultado.includes(atleta)    
+        const nomeNaArray = mapResultado?.includes(atleta)    
         if(nomeNaArray  &&  !nome.includes("Dardos")){
             throw new Error("Atleta já passou o resultado")
         }
         //--------------------------------------------------------------------------------
         //Verificar se o Atleta já jogou 3 vezes
         const buscaResultadoAtleta = await this.resultadoDatabase.buscarAtletaPorCompeticao(atleta, nome)
-        if(buscaResultadoAtleta.length === 3){
+        if(buscaResultadoAtleta?.length === 3){
             throw new Error("Atleta já passou os 3 resultados")
         }
         //--------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ export class ResultadoBusiness {
         const {nome} = input
 
         const rank = await this.resultadoDatabase.ranking(nome)
-        console.log(rank)
+        // console.log(rank)
         const response ={Competicao: nome, rank}
         return response
 
