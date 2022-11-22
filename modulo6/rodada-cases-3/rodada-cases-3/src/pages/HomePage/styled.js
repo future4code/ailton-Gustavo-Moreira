@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {backgroundColor, blackColor, whiteColor} from "../../constantes/colors"
+import {blackColor, whiteColor} from "../../constantes/colors"
 
 export const Container = styled.div`
     display: flex;
@@ -7,13 +7,10 @@ export const Container = styled.div`
     width: 100%;
     height: 100%;
     font-family: 'Montserrat', sans-serif;
-    border: 0.14em solid black;
 `
-
 export const Sidebar = styled.div`
     display: flex;
     flex-direction: column;
-    /* width: 20rem; */
     height: 16rem;
     justify-content: space-between;
     font-family: 'Montserrat', sans-serif;
@@ -30,7 +27,6 @@ export const Main = styled.div`
     background-color: whitesmoke;
     padding-top: 2rem;
 `
-
 export const Header_Sidebar = styled.div`
     display: flex;
     align-content: center;
@@ -64,7 +60,6 @@ export const Logo = styled.img`
     align-self: center;
     color: ${whiteColor};
 `
-
 export const Footer_Sidebar = styled.span`
     display: flex;
     align-content: center;
@@ -72,7 +67,6 @@ export const Footer_Sidebar = styled.span`
     color: ${whiteColor};
     padding-bottom: 2rem;
 `
-
 export const Footer_Main = styled.span`
     display: flex;
     align-content: center;
