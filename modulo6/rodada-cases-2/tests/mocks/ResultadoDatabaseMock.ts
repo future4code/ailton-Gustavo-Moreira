@@ -56,14 +56,14 @@ export class ResultadoDatabaseMock extends BaseDatabase {
     }
 
     public buscarAtletaPorCompeticao = async (atleta: string, nome: string): Promise<resultadoDB[] | undefined> =>{
-         if (atleta === "Felps") {
+         if (atleta === "Gustavo") {
             switch (nome) {
-                case "Natação 100 metros livres":
+                case "Lançamento de Dardos":
                     return [{
-                        nome: 'Natação 100 metros livres',    
-                        atleta: 'Felps',
-                        valor: '10.27',
-                        unidade: UNIDADE_ROLES.SEGUNDOS
+                        nome: 'Gustavo',    
+                        atleta: 'Gustavo',
+                        valor: '61',
+                        unidade: UNIDADE_ROLES.METROS
                     }]
                 default:
                     break

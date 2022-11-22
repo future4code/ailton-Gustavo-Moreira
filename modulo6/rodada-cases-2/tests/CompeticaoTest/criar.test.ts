@@ -2,7 +2,7 @@ import {CompeticaoBusiness} from "../../src/business/CompeticaoBusiness"
 import { criarInputDTO, UNIDADE_ROLES } from "../../src/models/Competicao"
 import {CompeticaoDatabaseMock} from "../mocks/CompeticaoDatabaseMock"
 
-describe("Testando criar da UserBusiness", () => {
+describe("Testando criar da CompetiçãoBusiness", () => {
     const competicaoBusiness = new CompeticaoBusiness(
         new CompeticaoDatabaseMock()
     )
